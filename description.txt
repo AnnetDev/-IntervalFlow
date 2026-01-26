@@ -1,0 +1,112 @@
+## Project: IntervalFlow — Tabata/HIIT/Interval Training Builder + Timer
+
+IntervalFlow is a Tabata/HIIT/interval training app that combines exercise selection with a Tabata timer. It allows users to choose exercises and automatically populate a classic Tabata timer to run interval workouts.
+
+### Timer example
+
+* One round contains **8 exercises** (30 seconds each) and **8 rest intervals** (10 seconds each).
+* Between rounds there is a **1-minute break**.
+* An average workout has **5–6 rounds**.
+* Each round contains different exercises. Rounds are usually different, but sometimes a round can repeat.
+
+### Tech
+
+* **MongoDB**
+* **Express (Node.js, JavaScript)**
+* I plan to use **MongoDB Compass** for database management and inspection.
+* **Project priority:** build the **MVP first**.
+
+---
+
+## Data model (high level)
+
+The database initially contains a library of exercises (for example: jumping jacks, squats). Each exercise includes additional fields such as:
+
+* description
+* difficulty level
+* muscle group(s)
+* equipment (optional)
+* and other metadata used for filtering
+
+---
+
+## User functionality
+
+### Flow 1 (no login required — local-only)
+
+Users can (without registration/login):
+
+1. Get a list of exercises (with filtering, for example by muscle group, difficulty level, workout duration, etc.).
+2. Use the UI to place selected exercises into a Tabata timer, forming a workout.
+3. Save the workout set if they like it and run it again later.
+
+In this flow, all user data is stored **locally on the device** (for example, in local storage).
+I would also like to add the ability for users to edit the timer workout: **change / remove / add exercises**, and save those custom exercises to a personal list (for example: “Added by me”) so they are available in their own library locally.
+
+### Flow 2 (with account — cloud sync)
+
+The same functionality as Flow 1, but with:
+
+* registration
+* login
+* user accounts
+
+This allows users to access their workouts/exercises from **any device** by logging in. In this flow, user data is stored in the **database**.
+
+---
+
+# Security risks and mitigation plan (API + DB)
+
+My API is an HTTP REST API with registration and login. Users can create an account with a username and password, log in, receive a JWT token, and then create and manage their own training programs and exercises. The database I plan to use is MongoDB.
+
+---
+
+## Threat 1: Credential attacks and password leakage (AUTH)
+
+The first security threat is related to authentication. If passwords are stored in an unsafe way, a database leak could expose user credentials. Also, the login endpoint can be targeted with brute force or credential stuffing attacks.
+
+### My mitigation plan:
+
+1. **Never store plain text passwords.** I will store passwords as strong salted hashes using a proven algorithm like **bcrypt**. When a user registers, I generate a unique salt, hash the password, and store only the hash. During login, I hash the incoming password and compare it to the stored hash.
+
+2. **Reduce brute force risk.** I plan to add **rate limiting** for login attempts, for example per IP and also with basic controls per username. I’ll also return a generic “invalid credentials” response so I’m not revealing whether a username exists.
+
+3. **JWT security basics.** I’ll issue JWT tokens with a **short expiration time**, store secrets in **environment variables**, and protect routes by validating the token. If the token is missing or invalid, I’ll return **401 Unauthorized**.
+
+---
+
+## Threat 2: NoSQL injection and unsafe MongoDB query usage
+
+The second threat is **NoSQL injection**, which is relevant since I’m using MongoDB. This can happen if user input is passed into database queries without validation. For example, attackers can try to send MongoDB operators like `$ne` or `$gt` to bypass checks or access data they shouldn’t.
+
+### My mitigation plan:
+
+* **Strict input validation:** I’ll validate request bodies and query parameters with a schema validator so only the expected fields and types are allowed. For example, `username` must always be a string, never an object.
+* **Allowlist filtering:** For endpoints with filters, I’ll allow only a predefined list of filter fields. Unknown fields will return **400 Bad Request**.
+* **Safe query construction:** I’ll map validated inputs into safe query objects and avoid passing raw user objects into queries. I’ll also reject input that includes MongoDB operators or unexpected nested objects.
+
+---
+
+## Threat 3: Data loss and availability (backups)
+
+Another risk is data loss: accidental deletion, buggy code, or database corruption can wipe user data or training programs.
+
+### How I would do backups:
+
+* I plan to use **automated scheduled backups**. In practice, that can be:
+
+  1. Regular database dumps using MongoDB tools like **mongodump**, saved as files.
+  2. Storing those backups in a **separate location** from the database server, for example a different machine or a cloud storage bucket.
+  3. **Rotating backups:** keeping daily backups for a short time and weekly backups for longer, so I can restore different points in time.
+* I would also test restores using **mongorestore** occasionally, because backups are only useful if restore works.
+* Finally, for my local development and assessment setup, I’ll keep **seed scripts** so the system can be recreated quickly, but the long-term plan for real use is real scheduled backups plus tested restores.
+
+---
+
+## Summary
+
+The main threats I highlighted are:
+
+1. **Credential attacks and password leakage**, mitigated with bcrypt salted hashing, rate limiting, and secure JWT handling.
+2. **NoSQL injection in MongoDB**, mitigated with strict validation, allowlisted filters, and safe query construction.
+3. **Data loss and availability**, mitigated with automated backups and tested restores.
