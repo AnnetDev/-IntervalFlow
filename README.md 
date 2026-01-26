@@ -1,4 +1,4 @@
-``
+```
 intervalflow/
 ├── backend/                 # API
 │   ├── src/
@@ -25,5 +25,5 @@ intervalflow/
 │   └── package.json
 └── README.md        
 
-``
+```
 
