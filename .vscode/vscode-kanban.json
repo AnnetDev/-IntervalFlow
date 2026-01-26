@@ -1,8 +1,69 @@
 {
-  "todo": [],
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T13:44:34.769Z",
+      "id": "8",
+      "prio": 3,
+      "references": [],
+      "title": "hash salt"
+    },
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T13:44:25.237Z",
+      "id": "7",
+      "prio": 3,
+      "references": [],
+      "title": "login"
+    },
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T13:44:20.335Z",
+      "id": "6",
+      "prio": 3,
+      "references": [],
+      "title": "registartion"
+    },
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T13:44:54.536Z",
+      "id": "9",
+      "prio": 3,
+      "references": [],
+      "title": "Scalar documentation"
+    }
+  ],
   "in-progress": [],
   "testing": [],
   "done": [
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T13:43:08.435Z",
+      "id": "4",
+      "prio": 3,
+      "references": [],
+      "title": "add basic API"
+    },
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T13:43:25.551Z",
+      "id": "5",
+      "prio": 3,
+      "references": [],
+      "title": "add data"
+    },
     {
       "assignedTo": {
         "name": "Anna"
