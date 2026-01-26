@@ -36,9 +36,9 @@ export const getExercises = async (req, res) => {
 
 export const getExerciseById = async (req, res) => {
     try {
-        const exerscise = await Exercise.findById(req.params.id); // Find exercise by ID from request parameters
+        const exercise = await Exercise.findById(req.params.id); // Find exercise by ID from request parameters
 
-        if(!exerscise) {
+        if(!exercise) {
             return res.status(404).json({
                 success: false,
                 message: 'Exercise not found'
@@ -47,7 +47,7 @@ export const getExerciseById = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            data: exerscise
+            data: exercise
         });
     } catch (eror) {
         if (error.kind === 'ObjectId') { // Check if the error is due to an invalid ObjectId format
@@ -95,3 +95,92 @@ export const createExercise = async (req, res) => {
 
     }
 }
+
+
+// @desc   Update exercise by ID
+// @route   PUT /api/exercises/:id - Update an existing exercise by its ID
+// @access  Public (later can be changed to Private with authentication)
+
+export const updateExercise = async (req, res) => {
+    try {
+        
+        const exercise = await Exercise.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { 
+                new: true,           // return the modified document rather than the original
+                runValidators: true  // run validation on the updated data
+            }
+        );
+
+    
+        if (!exercise) {
+            return res.status(404).json({
+                success: false,
+                message: 'Exercise not found'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: exercise
+        });
+
+    } catch (error) {
+        if (error.kind === 'ObjectId') {
+            return res.status(404).json({
+                success: false,
+                message: 'Exercise not found'
+            });
+        }
+        if (error.name === 'ValidationError') {
+            const messages = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({
+                success: false,
+                message: 'Validation error',
+                errors: messages
+            });
+        }
+
+        res.status(500).json({
+            success: false,
+            message: 'Server error',
+            error: error.message
+        });
+    }
+};
+
+// @desc  Delete exercise by ID
+// @route   DELETE /api/exercises/:id - Delete an existing exercise by its ID
+// @access  Public (later can be changed to Private with authentication)
+
+export const deleteExercise = async (req, res) => {
+    try {
+        const exercise = await Exercise.findByIdAndDelete(req.params.id);
+
+        if (!exercise) {
+            return res.status(404).json({
+                success: false,
+                message: 'Exercise not found'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: 'Exercise deleted successfully'
+        });
+    } catch (error) {
+        if (error.kind === 'ObjectId') {
+            return res.status(404).json({
+                success: false,
+                message: 'Exercise not found'
+            });
+        }
+
+        res.status(500).json({
+            success: false,
+            message: 'Server error',
+            error: error.message
+        });
+    }
+};
