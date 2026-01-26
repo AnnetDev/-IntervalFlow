@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv'; // Load environment variables
 import cors from 'cors'; // Middleware for enabling CORS (CORS - Cross-Origin Resource Sharing - allows controlled access to resources located outside of a given domain)
 import connectDB from './config/database.js'; // Import the database connection function
+import exerciseRoutes from './routes/exerciseRoutes.js'; // Import exercise routes
+import authRoutes from './routes/authRoutes.js'; // Import auth routes
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -14,12 +16,11 @@ app.use(cors()); // Enable calls from frontend
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
-import exerciseRoutes from './routes/exerciseRoutes.js'; // Import exercise routes
 
 
 // endpoints
 
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (req, res) => { // test endpoint to check if the API is running
     res.status(200).json({
         success: true,
         message: 'API is healthy',
@@ -28,6 +29,8 @@ app.get('/api/health', (req, res) => {
 })
 
 app.use('/api/exercises', exerciseRoutes); // Use exercise routes for /api/exercises endpoint
+
+app.use('/api/auth', authRoutes); // Use auth routes for /api/auth endpoint
 
 app.use((req, res) => {
     res.status(404).json({
