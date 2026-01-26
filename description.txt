@@ -110,3 +110,17 @@ The main threats I highlighted are:
 1. **Credential attacks and password leakage**, mitigated with bcrypt salted hashing, rate limiting, and secure JWT handling.
 2. **NoSQL injection in MongoDB**, mitigated with strict validation, allowlisted filters, and safe query construction.
 3. **Data loss and availability**, mitigated with automated backups and tested restores.
+
+
+## API documentation - Scalar
+
+---------------------------------
+ npm install express mongoose bcryptjs jsonwebtoken dotenv express-validator express-rate-limit cors 
+ - express for server, 
+ - mongoose for mongodb, 
+ - bcryptjs for password hashing, 
+ - jsonwebtoken for token generation, 
+ - dotenv for environment variables, 
+ - express-validator for input validation, 
+ - express-rate-limit for rate limiting, 
+ - cors for cross-origin resource sharing

@@ -1,0 +1,39 @@
+{
+  "todo": [],
+  "in-progress": [],
+  "testing": [],
+  "done": [
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T10:37:01.455Z",
+      "id": "1",
+      "references": [],
+      "title": "Instalning the enviroment",
+      "details": {
+        "content": "npm init -y\n\nadd to package.json:\n\"scripts\": {\n    \"start\": \"node src/server.js\",\n    \"dev\": \"node --watch src/server.js\",\n    \"seed\": \"node src/seeders/seed.js\"\n  },\n npm install express mongoose bcryptjs jsonwebtoken dotenv express-validator express-rate-limit cors \n - express for server, \n - mongoose for mongodb, \n - bcryptjs for password hashing, \n - jsonwebtoken for token generation, \n - dotenv for environment variables, \n - express-validator for input validation, \n - express-rate-limit for rate limiting, \n - cors for cross-origin resource sharing\n\n.env file",
+        "mime": "text/markdown"
+      }
+    },
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T10:38:54.114Z",
+      "id": "3",
+      "references": [],
+      "title": "project structure"
+    },
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
+      "creation_time": "2026-01-26T10:37:19.640Z",
+      "id": "2",
+      "prio": 0,
+      "references": [],
+      "title": "test the enviroment"
+    }
+  ]
+}
