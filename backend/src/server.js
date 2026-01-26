@@ -14,6 +14,8 @@ app.use(cors()); // Enable calls from frontend
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
+import exerciseRoutes from './routes/exerciseRoutes.js'; // Import exercise routes
+
 
 // endpoints
 
@@ -24,6 +26,8 @@ app.get('/api/health', (req, res) => {
         timestamp: new Date().toISOString() // Include the current timestamp
     })
 })
+
+app.use('/api/exercises', exerciseRoutes); // Use exercise routes for /api/exercises endpoint
 
 app.use((req, res) => {
     res.status(404).json({

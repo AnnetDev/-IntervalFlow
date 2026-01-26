@@ -55,3 +55,9 @@ const exerciseSchema = new mongoose.Schema(
         timestamps: true // Automatically manage createdAt and updatedAt fields
     }
 );
+
+exerciseSchema.index({ difficulty: 1, muscleGroup: 1 }); // Compound index for efficient querying
+exerciseSchema.index({ createdBy: 1 }); // Index to optimize queries filtering by createdBy
+
+const Exercise = mongoose.model('Exercise', exerciseSchema); // Create the Exercise model - a model is a class with which we construct documents. In this case, the model is for exercises.
+export default Exercise;
