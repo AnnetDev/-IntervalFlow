@@ -18,7 +18,7 @@ const exerciseSchema = new mongoose.Schema(
         difficulty: {
             type: String,
             required: [true, 'Difficulty level is required'],
-            enum: { 
+            enum: {
                 values: ['beginner', 'intermediate', 'advanced'],
                 message: 'Difficulty must be beginner, intermediate, or advanced'
             },
@@ -27,8 +27,8 @@ const exerciseSchema = new mongoose.Schema(
         muscleGroup: {
             type: String,
             required: [true, 'Muscle group is required'],
-            enum: { 
-                values: ['cardio', 'legs', 'core', 'upper-body', 'full-body'],
+            enum: {
+                values: ['cardio', 'legs', 'glutes', 'core', 'upper-body', 'back', 'full-body', 'mobility', 'balance'],
                 message: 'Invalid muscle group'
             },
             lowercase: true
@@ -41,7 +41,7 @@ const exerciseSchema = new mongoose.Schema(
         },
         equipment: {
             type: String,
-            enum: ['none', 'dumbbells', 'mat', 'resistance-band'],
+            enum: ['none', 'dumbbells', 'mat', 'resistance-band', 'chair', 'kettlebell'],
             default: 'none',
             lowercase: true
         },
