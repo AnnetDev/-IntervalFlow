@@ -71,7 +71,12 @@ export const getExerciseById = async (req, res) => {
 
 export const createExercise = async (req, res) => {
     try {
-        const exercise = await Exercise.create(req.body); // Create a new exercise document using the request body
+        const exerciseData = {
+            ...req.body,
+            createdBy: req.user._id
+        };
+
+        const exercise = await Exercise.create(exerciseData); // Create a new exercise document using the request body
 
         res.status(201).json({
             success: true,

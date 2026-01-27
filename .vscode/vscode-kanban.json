@@ -14,6 +14,16 @@
       "assignedTo": {
         "name": "Anna"
       },
+      "creation_time": "2026-01-27T12:33:07.581Z",
+      "id": "13",
+      "prio": 3,
+      "references": [],
+      "title": "learn route handlers"
+    },
+    {
+      "assignedTo": {
+        "name": "Anna"
+      },
       "creation_time": "2026-01-26T20:43:14.386Z",
       "id": "10",
       "prio": 3,
@@ -29,7 +39,9 @@
       "prio": 3,
       "references": [],
       "title": "Scalar documentation"
-    },
+    }
+  ],
+  "in-progress": [
     {
       "assignedTo": {
         "name": "Anna"
@@ -41,7 +53,6 @@
       "title": "middleware"
     }
   ],
-  "in-progress": [],
   "testing": [],
   "done": [
     {
