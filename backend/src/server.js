@@ -3,7 +3,8 @@ import dotenv from 'dotenv'; // Load environment variables
 import cors from 'cors'; // Middleware for enabling CORS (CORS - Cross-Origin Resource Sharing - allows controlled access to resources located outside of a given domain)
 import connectDB from './config/database.js'; // Import the database connection function
 import exerciseRoutes from './routes/exerciseRoutes.js'; // Import exercise routes
-import authRoutes from './routes/authRoutes.js'; // Import auth routes
+import authRoutes from './routes/authRoutes.js';
+import { apiLimiter } from './middleware/ratelimiter.js';
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -15,6 +16,7 @@ const app = express();
 app.use(cors()); // Enable calls from frontend 
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
+app.use(apiLimiter); // Apply rate limiting to all API routes
 
 
 
