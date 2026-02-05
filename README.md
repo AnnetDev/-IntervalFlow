@@ -1,10 +1,15 @@
-# IntervalFlow API
+# IntervalFlow
 
-A RESTful API for managing Tabata/HIIT interval training workouts. Built with Node.js, Express, and MongoDB.
+IntervalFlow is a Tabata/HIIT/interval training app that combines exercise selection with a Tabata timer.
 
-## 🎯 Project Overview
+## Current Implementation (This Submission)
 
-IntervalFlow is a backend API that enables users to:
+**This submission contains the MVP backend API focused on exercise management.**
+
+
+## 🎯 IntervalFlow API Overview
+
+IntervalFlow API is a backend API that enables users to:
 - Browse and filter workout exercises by difficulty, muscle group, and equipment
 - Create custom exercises and save them to their account
 - Authenticate securely with JWT tokens

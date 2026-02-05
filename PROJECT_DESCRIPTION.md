@@ -145,52 +145,6 @@ Same functionality as Flow 1, plus:
 
 ---
 
-## Data Model (Current)
-
-### Exercise Schema
-```javascript
-{
-  name: String,              // Exercise name
-  description: String,       // How to perform
-  difficulty: String,        // beginner | intermediate | advanced
-  muscleGroup: String,       // cardio | legs | core | upper-body | etc.
-  duration: Number,          // Default duration in seconds (30)
-  equipment: String,         // none | dumbbells | mat | kettlebell | chair
-  createdBy: ObjectId,       // User who created (null for public exercises)
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### User Schema
-```javascript
-{
-  username: String,          // Unique username
-  email: String,             // Unique email
-  password: String,          // Bcrypt hashed password
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
-### Future: Workout Schema (Planned)
-```javascript
-{
-  name: String,
-  userId: ObjectId,
-  rounds: [{
-    exercises: [ObjectId],   // Array of exercise IDs
-    workInterval: Number,    // 30 seconds
-    restInterval: Number     // 10 seconds
-  }],
-  breakBetweenRounds: Number, // 60 seconds
-  createdAt: Date,
-  updatedAt: Date
-}
-```
-
----
-
 ## Security Implementation
 
 ### ✅ Threat 1: Credential Attacks and Password Leakage (AUTH)
@@ -227,37 +181,6 @@ Same functionality as Flow 1, plus:
 - Local MongoDB instance with manual backups as needed
 
 ---
-
-## Installation & Setup
-
-### Dependencies:
-```bash
-npm install express mongoose bcryptjs jsonwebtoken dotenv express-validator express-rate-limit cors @scalar/express-api-reference
-```
-
-**Package purposes:**
-- `express` - Web server framework
-- `mongoose` - MongoDB ODM
-- `bcryptjs` - Password hashing
-- `jsonwebtoken` - JWT token generation/verification
-- `dotenv` - Environment variable management
-- `express-validator` - Input validation
-- `express-rate-limit` - Rate limiting middleware
-- `cors` - Cross-origin resource sharing
-- `@scalar/express-api-reference` - Interactive API documentation
-
-### Quick Start:
-1. Install dependencies: `npm install`
-2. Create `.env` file with configuration
-3. Start MongoDB: `mongod --dbpath ~/data/db`
-4. Seed database: `npm run seed`
-5. Start server: `npm run dev`
-6. Access API docs: `http://localhost:3000/api-docs`
-
-For detailed setup instructions, see [README.md](./README.md)
-
----
-
 ## API Documentation
 
 ### Interactive Documentation (Scalar)
@@ -270,70 +193,6 @@ For detailed setup instructions, see [README.md](./README.md)
 ### Written Documentation
 - **README.md** - Setup, installation, quick start
 - **API_DOCUMENTATION.md** - Complete endpoint reference, examples, testing guide
-
----
-
-## Status Codes (RFC 2616 Compliant)
-
-| Code | Usage |
-|------|-------|
-| 200 | OK - Successful GET, PUT, DELETE |
-| 201 | Created - Successful POST |
-| 400 | Bad Request - Invalid input, validation error |
-| 401 | Unauthorized - Missing/invalid token, wrong credentials |
-| 404 | Not Found - Resource doesn't exist |
-| 429 | Too Many Requests - Rate limit exceeded |
-| 500 | Internal Server Error - Unexpected server error |
-
----
-
-## HTTP Methods
-
-| Method | Usage | Authentication |
-|--------|-------|----------------|
-| GET | Retrieve exercises | Not required |
-| POST | Create exercise, register/login | Required (except auth) |
-| PUT | Update exercise | Required |
-| DELETE | Delete exercise | Required |
-
----
-
-## Project Structure
-```
-intervalflow/
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   ├── database.js      # MongoDB connection
-│   │   │   └── openapi.js       # API specification
-│   │   ├── models/
-│   │   │   ├── Exercise.js      # Exercise schema
-│   │   │   └── User.js          # User schema
-│   │   ├── controllers/
-│   │   │   ├── authController.js
-│   │   │   └── exerciseController.js
-│   │   ├── routes/
-│   │   │   ├── authRoutes.js
-│   │   │   └── exerciseRoutes.js
-│   │   ├── middleware/
-│   │   │   ├── auth.js          # JWT verification
-│   │   │   └── rateLimiter.js   # Rate limiting
-│   │   ├── utils/
-│   │   │   └── generateToken.js
-│   │   ├── seeders/
-│   │   │   ├── exercisesSeed.js # Seed data
-│   │   │   └── seed.js          # Seed script
-│   │   └── server.js            # Entry point
-│   ├── .env
-│   ├── .gitignore
-│   └── package.json
-├── frontend/                    # (Future development)
-├── README.md
-├── API_DOCUMENTATION.md
-└── description.txt              # This file
-```
-
----
 
 ## Future Improvements & TODO
 
@@ -358,20 +217,9 @@ intervalflow/
 
 ---
 
-## Summary
-
-This submission delivers a **production-ready MVP backend API** for exercise management with:
-- ✅ Secure authentication (bcrypt + JWT)
-- ✅ Rate limiting and input validation
-- ✅ RESTful design following RFC 2616
-- ✅ Comprehensive documentation (Scalar + written docs)
-- ✅ Clean, maintainable code structure
-- ✅ Easy local setup with seed data
-
 The foundation is built for future expansion into a complete Tabata/HIIT training platform with workout management, timer functionality, and frontend integration.
 
 ---
 
 **Author:** Anna Baidikova  
-**Course:** Web Development, Hyper Island  
 **Date:** February 2026
