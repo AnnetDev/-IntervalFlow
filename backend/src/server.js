@@ -5,6 +5,8 @@ import connectDB from './config/database.js'; // Import the database connection 
 import exerciseRoutes from './routes/exerciseRoutes.js'; // Import exercise routes
 import authRoutes from './routes/authRoutes.js';
 import { apiLimiter } from './middleware/ratelimiter.js';
+import { apiReference } from '@scalar/express-api-reference'; // Scalar
+import { openApiSpec } from './config/openapi.js';  // Scalar
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -29,6 +31,15 @@ app.get('/api/health', (req, res) => { // test endpoint to check if the API is r
         timestamp: new Date().toISOString() // Include the current timestamp
     })
 })
+
+app.use( // API Documentation route  - Scalar
+    '/api-docs',
+    apiReference({
+        spec: {
+            content: openApiSpec,
+        },
+    })
+);
 
 app.use('/api/exercises', exerciseRoutes); // Use exercise routes for /api/exercises endpoint
 

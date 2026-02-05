@@ -132,15 +132,18 @@ You should see:
 
 ## 📚 Documentation
 
-For complete API documentation, including all endpoints, request/response examples, and authentication details, see:
+### Interactive API Documentation (Scalar)
+
+Once the server is running, you can access the **interactive API documentation** at:
+```
+http://localhost:3000/api-docs
+```
+
+### Written Documentation
+
+For detailed written documentation, see:
 
 **[API_DOCUMENTATION.md](./API_DOCUMENTATION.md)**
-
-Quick links:
-- [Authentication Endpoints](./API_DOCUMENTATION.md#authentication)
-- [Exercise Endpoints](./API_DOCUMENTATION.md#exercises)
-- [Status Codes](./API_DOCUMENTATION.md#status-codes)
-- [Testing Guide](./API_DOCUMENTATION.md#testing)
 
 ## 📁 Project Structure
 ```
@@ -188,7 +191,6 @@ curl -X POST http://localhost:3000/api/auth/register \
 curl http://localhost:3000/api/exercises?difficulty=beginner
 ```
 
-For detailed testing instructions, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md#testing).
 
 ## 🐛 Troubleshooting
 
@@ -215,10 +217,6 @@ npm start      # Start production server
 npm run dev    # Start development server (auto-reload)
 npm run seed   # Populate database with exercises
 ```
-
-## 📄 License
-
-MIT License
 
 ## 👤 Author
 
