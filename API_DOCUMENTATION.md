@@ -2,24 +2,21 @@
 
 Complete API reference for IntervalFlow - Tabata/HIIT workout management API.
 
-## 📋 Table of Contents
-
-- [Base URL](#base-url)
-- [Status Codes](#status-codes)
-- [Response Format](#response-format)
-- [Authentication](#authentication)
-- [Health Check](#health-check)
-- [Exercises](#exercises)
-- [Error Handling](#error-handling)
-- [Rate Limiting](#rate-limiting)
-- [Testing Guide](#testing-guide)
-
 ## 🌐 Base URL
 ```
 http://localhost:3000/api
 ```
 
 All endpoints are prefixed with `/api`.
+
+## 🌐 Interactive Documentation
+
+**The easiest way to explore and test this API is through the interactive Scalar documentation.**
+
+Once the server is running, visit:
+```
+http://localhost:3000/api-docs
+```
 
 ## 📊 Status Codes
 
@@ -804,78 +801,8 @@ curl -X POST http://localhost:3000/api/exercises \
 3. **Verify password hashing**
    - Open `users` collection
    - Check `password` field - should be a bcrypt hash (e.g., `$2a$10$...`)
-   - NOT plain text!
 
 4. **Check exercise ownership**
    - Open `exercises` collection
    - Seed exercises have `createdBy: null`
    - User-created exercises have `createdBy: ObjectId("...")`
-
----
-
-## 📝 Example Workflows
-
-### Workflow 1: New User Registration & Exercise Creation
-```http
-# Step 1: Register
-POST /api/auth/register
-{
-  "username": "athlete123",
-  "email": "athlete@example.com",
-  "password": "secure123"
-}
-
-# Response: Receive token
-
-# Step 2: Browse exercises
-GET /api/exercises?difficulty=beginner&muscleGroup=cardio
-
-# Step 3: Create custom exercise
-POST /api/exercises
-Authorization: Bearer YOUR_TOKEN
-{
-  "name": "My Custom Burpee",
-  "description": "Modified burpee with jump",
-  "difficulty": "advanced",
-  "muscleGroup": "full-body"
-}
-
-# Step 4: Update exercise
-PUT /api/exercises/:id
-Authorization: Bearer YOUR_TOKEN
-{
-  "duration": 60
-}
-```
-
-### Workflow 2: Existing User Login & Filter Exercises
-```http
-# Step 1: Login
-POST /api/auth/login
-{
-  "email": "athlete@example.com",
-  "password": "secure123"
-}
-
-# Response: Receive token
-
-# Step 2: Find upper body exercises without equipment
-GET /api/exercises?muscleGroup=upper-body&equipment=none
-
-# Step 3: Get specific exercise details
-GET /api/exercises/:id
-```
-
----
-
-## 🔗 Additional Resources
-
-- **Main README**: [README.md](./README.md) - Setup and installation guide
-- **MongoDB Documentation**: https://docs.mongodb.com/
-- **JWT Introduction**: https://jwt.io/introduction
-- **REST API Best Practices**: https://restfulapi.net/
-- **HTTP Status Codes (RFC 2616)**: https://www.rfc-editor.org/rfc/rfc2616
-
----
-
-**Questions or issues?** Refer to the Troubleshooting section in [README.md](./README.md#troubleshooting).

@@ -49,7 +49,7 @@ export const getExerciseById = async (req, res) => {
             success: true,
             data: exercise
         });
-    } catch (eror) {
+    } catch (error) {
         if (error.kind === 'ObjectId') { // Check if the error is due to an invalid ObjectId format
             return res.status(404).json({
                 success: false,
