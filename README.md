@@ -56,9 +56,6 @@ MONGO_URI=mongodb://localhost:27017/intervalflow
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 JWT_EXPIRE=7d
 
-# Rate Limiting
-RATE_LIMIT_WINDOW_MS=900000
-RATE_LIMIT_MAX_REQUESTS=100
 ```
 
 ⚠️ **Important**: Change `JWT_SECRET` to a random string in production!
