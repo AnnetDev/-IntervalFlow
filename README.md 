@@ -181,14 +181,14 @@ intervalflow/
 
 1. **Register a user:**
 ```bash
-   curl -X POST http://localhost:3000/api/auth/register \
-     -H "Content-Type: application/json" \
-     -d '{"username":"testuser","email":"test@example.com","password":"test123"}'
+curl -X POST http://localhost:3000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","email":"test@example.com","password":"test123"}'
 ```
 
 2. **Get exercises:**
 ```bash
-   curl http://localhost:3000/api/exercises?difficulty=beginner
+curl http://localhost:3000/api/exercises?difficulty=beginner
 ```
 
 For detailed testing instructions, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md#testing).
@@ -196,16 +196,19 @@ For detailed testing instructions, see [API_DOCUMENTATION.md](./API_DOCUMENTATIO
 ## 🐛 Troubleshooting
 
 ### MongoDB Connection Error
+
 1. Ensure MongoDB is running: `mongod --dbpath ~/data/db`
 2. Check `.env` file has correct `MONGO_URI`
 3. Verify port 27017 is not in use
 
 ### Port Already in Use
+
 1. Stop other processes using port 3000
 2. Change `PORT` in `.env` file
 3. Kill process: `lsof -ti:3000 | xargs kill -9`
 
 ### Rate Limit Error (429)
+
 1. Wait 15 minutes for reset
 2. Restart server (development only)
 
@@ -222,5 +225,4 @@ MIT License
 
 ## 👤 Author
 
-Anna Baidikova  
-
+Anna Baidikova
