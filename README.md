@@ -63,7 +63,12 @@ JWT_EXPIRE=7d
 
 ```
 
-⚠️ **Important**: Change `JWT_SECRET` to a random string in production!
+**Security Note:**
+- This is an **example configuration** for local development
+- Never commit your actual `.env` file to Git (already in `.gitignore`)
+- In production, use **strong random secrets** and **environment variables**
+
+⚠️ **Important**: Change `JWT_SECRET` to strong random secrets in production!
 
 ### 3. Start MongoDB
 
