@@ -48,20 +48,25 @@ npm install
 
 ### 2. Configure Environment
 
+**For Local Development:**
+
 Create a `.env` file in the `backend` directory:
 ```env
 # Server Configuration
 PORT=3000
 NODE_ENV=development
 
-# MongoDB Configuration
+# MongoDB Configuration - Local
 MONGO_URI=mongodb://localhost:27017/intervalflow
 
 # JWT Configuration
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-12345
 JWT_EXPIRE=7d
-
 ```
+⚠️ **Important:** Never commit your `.env` file to Git (already in `.gitignore`).
+
+**Note:** The production API is already deployed at Render
+check https://intervalflow-api.onrender.com/api/health 
 
 **Security Note:**
 - This is an **example configuration** for local development
@@ -139,6 +144,30 @@ You should see:
   "timestamp": "2026-02-04T21:30:00.000Z"
 }
 ```
+
+## 🌐 Live Demo
+
+**Production API:**
+- 🔗 Base URL: https://intervalflow-api.onrender.com/api
+- 💚 Health Check: https://intervalflow-api.onrender.com/api/health
+- 📚 Interactive API Docs: https://intervalflow-api.onrender.com/api-docs
+
+**Database:** MongoDB Atlas (Cloud)
+
+**⚠️ Note:** Free tier spins down after 15 minutes of inactivity. First request after sleep may take 30-60 seconds to wake up. A cron job pings the API every 10 minutes to keep it active.
+
+**Test the API:**
+```bash
+# Get all exercises
+curl https://intervalflow-api.onrender.com/api/exercises
+
+# Get exercises by difficulty
+curl https://intervalflow-api.onrender.com/api/exercises?difficulty=beginner
+
+# Health check
+curl https://intervalflow-api.onrender.com/api/health
+```
+
 
 ## 📚 Documentation
 

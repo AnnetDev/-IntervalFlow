@@ -2,21 +2,44 @@
 
 Complete API reference for IntervalFlow - Tabata/HIIT workout management API.
 
-## 🌐 Base URL
+## Base URLs
+
+**Production:**
+```
+https://intervalflow-api.onrender.com/api
+```
+
+**Local Development:**
 ```
 http://localhost:3000/api
 ```
 
-All endpoints are prefixed with `/api`.
+All endpoints below are relative to the base URL.
+
+---
 
 ## 🌐 Interactive Documentation
 
-**The easiest way to explore and test this API is through the interactive Scalar documentation.**
+**Production API Documentation:**
 
-Once the server is running, visit:
+The easiest way to explore and test this API is through the interactive Scalar documentation:
+
+**🔗 Live Documentation:** https://intervalflow-api.onrender.com/api-docs
+
+**Local Documentation (when running locally):**
+
+Once the server is running locally, visit:
 ```
 http://localhost:3000/api-docs
 ```
+
+**Quick Start with Production API:**
+1. Open: https://intervalflow-api.onrender.com/api-docs
+2. Click on any endpoint to see details
+3. Click "Send Request" to test
+4. For protected endpoints: Click "🔐 Authorize" → Enter `Bearer YOUR_TOKEN`
+
+---
 
 ## 📊 Status Codes
 
