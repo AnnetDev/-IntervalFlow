@@ -4,6 +4,9 @@
   "description": "IntervalFlow API - Tabata/HIIT workout builder",
   "main": "src/server.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
@@ -27,6 +30,7 @@
     "express-rate-limit": "^8.2.1",
     "express-validator": "^7.3.1",
     "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.1.0",
     "mongoose": "^9.1.5"
   }
 }

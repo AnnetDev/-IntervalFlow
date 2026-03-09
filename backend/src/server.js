@@ -7,7 +7,10 @@ import authRoutes from './routes/authRoutes.js';
 import { apiLimiter } from './middleware/ratelimiter.js';
 import { apiReference } from '@scalar/express-api-reference'; // Scalar
 import { openApiSpec } from './config/openapi.js';  // Scalar
-
+// XSVb7Yzwlq5jlcTE
+// mongodb+srv://intervalflow_user:XSVb7Yzwlq5jlcTE@cluster0.w2nhxmp.mongodb.net/intervalflow?appName=Cluster0
+// intervalflow_user
+// AIRMkLctt897Ku7U
 dotenv.config(); // Load environment variables from .env file
 
 connectDB();
@@ -15,7 +18,18 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable calls from frontend 
+// app.use(cors()); // Enable calls from frontend 
+
+// CORS configuration for production
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'production'
+        ? process.env.FRONTEND_URL  // Vercel URL frontend
+        : 'http://localhost:5173',   // Vite dev server
+    credentials: true
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 app.use(apiLimiter); // Apply rate limiting to all API routes
@@ -24,13 +38,24 @@ app.use(apiLimiter); // Apply rate limiting to all API routes
 
 // endpoints
 
-app.get('/api/health', (req, res) => { // test endpoint to check if the API is running
+// app.get('/api/health', (req, res) => { // test endpoint to check if the API is running
+//     res.status(200).json({
+//         success: true,
+//         message: 'API is healthy',
+//         timestamp: new Date().toISOString() // Include the current timestamp
+//     })
+// })
+
+// Health check endpoint ( Render & Cron job ) Cron job - will keep the server awake
+app.get('/api/health', (req, res) => {
     res.status(200).json({
         success: true,
-        message: 'API is healthy',
-        timestamp: new Date().toISOString() // Include the current timestamp
-    })
-})
+        message: 'IntervalFlow API is running!',
+        timestamp: new Date().toISOString(), // Include the current timestamp
+        uptime: process.uptime(), // Include the uptime of the server in seconds
+        environment: process.env.NODE_ENV
+    });
+});
 
 app.use( // API Documentation route  - Scalar
     '/api-docs',
