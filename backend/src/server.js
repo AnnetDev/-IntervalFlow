@@ -7,10 +7,7 @@ import authRoutes from './routes/authRoutes.js';
 import { apiLimiter } from './middleware/ratelimiter.js';
 import { apiReference } from '@scalar/express-api-reference'; // Scalar
 import { openApiSpec } from './config/openapi.js';  // Scalar
-// XSVb7Yzwlq5jlcTE
-// mongodb+srv://intervalflow_user:XSVb7Yzwlq5jlcTE@cluster0.w2nhxmp.mongodb.net/intervalflow?appName=Cluster0
-// intervalflow_user
-// AIRMkLctt897Ku7U
+
 dotenv.config(); // Load environment variables from .env file
 
 connectDB();
