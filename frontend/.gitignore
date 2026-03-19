@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .gitignore
+.pwd.md 
 
 # Editor directories and files
 .vscode/*

@@ -1,0 +1,4 @@
+.exerciseCard {
+      composes: glass from global;
+      padding: 1rem;
+}
