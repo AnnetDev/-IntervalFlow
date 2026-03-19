@@ -1,0 +1,52 @@
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .logo {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.logotext {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(90deg, #ffffff, #e0e7ff, #c7d2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animItem {
+    opacity: 0;
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+.logotextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .logotextContainer {
+        align-items: flex-start;
+    }
+}
