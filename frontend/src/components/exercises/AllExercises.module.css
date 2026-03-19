@@ -1,0 +1,41 @@
+.allExercises {
+  display: flex;
+  flex-direction:column;
+  /* flex: 1; */
+  /* justify-content: space-between; */
+  overflow-x: hidden;
+}
+.exerciseList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollable-y: auto;
+  max-height: 500px;
+}
+
+.exerciseList::-webkit-scrollbar {
+    width: 8px;
+  }
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+}
+

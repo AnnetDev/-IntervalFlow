@@ -4,7 +4,7 @@ import { Select } from "../common/Button/Select";
 import { Button } from "../common/Button/Button";
 import ExerciseCard from "./ExerciseCard";
 import { getAllExercises } from '../../services/api';
-
+import styles from './AllExercises.module.css';
 
 const AllExercises = () => {
   const [exercises, setExercises] = useState([]);
@@ -12,37 +12,45 @@ const AllExercises = () => {
   const [muscleGroup, setMuscleGroup] = useState('');
   const [equipment, setEquipment] = useState('');
 
-
   const selectOptions = [
-    { name: 'Difficulty', availableOptions: ['show all', 'easy', 'medium', 'hard'], value: difficulty, onChange: setDifficulty },
-    { name: 'Muscle Group', availableOptions: ['show all', 'arms', 'legs', 'core'], value: muscleGroup, onChange: setMuscleGroup },
-    { name: 'Equipment', availableOptions: ['show all', 'dumbbells', 'barbell'], value: equipment, onChange: setEquipment }
+    { name: 'Difficulty', options: getSelectOptions(exercises, 'difficulty'), value: difficulty, onChange: setDifficulty },
+    { name: 'Muscle Group', options: getSelectOptions(exercises, 'muscleGroup'), value: muscleGroup, onChange: setMuscleGroup },
+    { name: 'Equipment', options: getSelectOptions(exercises, 'equipment'), value: equipment, onChange: setEquipment },
   ];
 
   useEffect(() => {
-    getAllExercises()
+    getAllExercises({ difficulty, muscleGroup, equipment })
       .then(data => setExercises(data))
       .catch(error => console.error('Error fetching exercises:', error));
-  }, []);
+  }, [difficulty, muscleGroup, equipment]);
+
+  function getSelectOptions(exercises, field) {
+    const unique = [...new Set(exercises.map(ex => ex[field]).filter(Boolean))];
+    return [{ value: '', label: 'Show all' }, ...unique.map(v => ({ value: v, label: v }))];
+  }
+
+  function handleClearFilters() {
+    setDifficulty('');
+    setMuscleGroup('');
+    setEquipment('');
+  }
 
   return (
-    <div>
-      <h2>All Exercises</h2>
-      {/* //fetch and display all exercises */}
-      <div>
-        <h3>Search:</h3>
-        <Input placeholder=" ..." />
-      </div>
+    <div className={styles.allExercises}>
+      <h2 className='visuallyHidden'>All Exercises</h2>
 
-      <div>
-        <h3>Filters:</h3>
-        {selectOptions.map((option) => (
-          <div key={option.name}>
-            <h4>{option.name}</h4>
-            <Select options={option.availableOptions.map(value => ({ value, label: value }))} value={option.value} onChange={(e) => { option.onChange(e.target.value) }} />
-          </div>
-        ))}
-        <Button onClick={() => { /* Clear filters */ }}>Clear Filters</Button>
+      {/* TODO for future: add search */}
+      <div className={styles.filtersWrapper} >
+        <div className={styles.filters}>
+          <h3>Filters:</h3>
+          {selectOptions.map((option) => (
+            <div className={styles.filter} key={option.name}>
+              <h4>{option.name}</h4>
+              <Select options={option.options} value={option.value} onChange={(e) => { option.onChange(e.target.value) }} />
+            </div>
+          ))}
+        </div>
+        <Button onClick={() => { handleClearFilters() }}>Clear Filters</Button>
       </div>
 
       <div>
@@ -50,7 +58,7 @@ const AllExercises = () => {
         {/* //display exercises in a grid */}
 
 
-        <ul>
+        <ul className={styles.exerciseList}>
           {exercises.map(exercise => (
             <li key={exercise._id}>
               <ExerciseCard exercise={exercise} />
