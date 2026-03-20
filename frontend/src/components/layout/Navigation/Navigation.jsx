@@ -1,12 +1,33 @@
 import { NavLink } from 'react-router-dom';
-import { User, Dumbbell, Timer } from 'lucide-react';
+import { User, Dumbbell, Timer, Layers } from 'lucide-react';
 import styles from './Navigation.module.css';
 
 export function Navigation() {
     const navItems = [
-        { name: 'Exercises', path: '/exercises', icon: <Dumbbell /> },
-        { name: 'Timer', path: '/timer', icon: <Timer /> },
-        { name: 'Profile', path: '/profile', icon: <User /> },
+        {
+            name: 'Exercises',
+            path: '/exercises',
+            icon: <Dumbbell />,
+            disabled: false,
+        },
+        {
+            name: 'Trainings',
+            path: '/trainings',
+            icon: <Layers />,
+            disabled: true,
+        },
+        {
+            name: 'Timer',
+            path: '/timer',
+            icon: <Timer />,
+            disabled: false
+        },
+        {
+            name: 'Profile',
+            path: '/profile',
+            icon: <User />,
+            disabled: true
+        },
     ];
 
     return (
@@ -15,8 +36,20 @@ export function Navigation() {
                 <ul className={styles.navList}>
                     {navItems.map((item) => (
                         <li className={styles.navItem} key={item.path}>
-                            <NavLink className={styles.navLink} to={item.path}>
-                                {item.icon}
+                            <NavLink
+                                className={
+                                    item.disabled
+                                        ? styles.navLinkDisabled
+                                        : styles.navLink
+                                }
+                                to={item.path}
+                            >
+                                <div className={styles.iconWrapper}>
+                                    {item.icon}
+                                    <span className={styles.navText}>
+                                        {item.name}
+                                    </span>
+                                </div>
                             </NavLink>
                         </li>
                     ))}

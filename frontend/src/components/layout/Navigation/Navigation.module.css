@@ -16,7 +16,14 @@
     text-decoration: none;
 }
 
-.navLink svg {
+.navLinkDisabled {
+    text-decoration: none;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.navLink svg,
+.navLinkDisabled svg {
     width: 35px;
     height: auto;
     color: #fff;
@@ -27,4 +34,15 @@
     .navLink svg {
         width: 38px;
     }
+}
+
+.iconWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.navText {
+    font-size: 1rem;
+    color: #fff;
 }

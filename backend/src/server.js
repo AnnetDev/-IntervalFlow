@@ -14,6 +14,17 @@ connectDB();
 
 const app = express();
 
+app.set('trust proxy', 1);
+
+// CORS configuration
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'production'
+        ? process.env.FRONTEND_URL
+        : 'http://localhost:5173',
+    credentials: true
+};
+
+app.use(cors(corsOptions));
 // Middleware
 app.use(cors()); // Enable calls from frontend 
 app.use(express.json()); // Parse JSON request bodies

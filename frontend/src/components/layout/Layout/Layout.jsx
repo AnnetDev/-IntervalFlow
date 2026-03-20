@@ -1,9 +1,9 @@
-// import Header from './Header';
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getRandomBackground } from '../../../utils/randomBackground';
 import { backgrounds } from '../../../utils/backgrounds';
 import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 import styles from './Layout.module.css';
 
 const Layout = ({ children }) => {
@@ -38,7 +38,7 @@ const Layout = ({ children }) => {
             }}
             className={styles.layout}
         >
-            {/* <Header /> */}
+            <Header />
             <main>{children}</main>
             <Footer />
         </div>

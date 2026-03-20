@@ -23,6 +23,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: linear-gradient(135deg, #110f24 50%, #231626 100%);
     color: #fff;
+    overflow-y: hidden;
 }
 
 main {
@@ -75,4 +76,17 @@ main {
         inset 0px -8px 0px -8px rgba(255, 255, 255, 1);
     opacity: 0.6;
     z-index: -1;
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
