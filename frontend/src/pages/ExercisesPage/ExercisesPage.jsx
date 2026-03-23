@@ -12,16 +12,16 @@ const ExercisesPage = () => {
                 <h1 className='visuallyHidden'>Exercises Page</h1>
                 <div className={styles.tabs}>
                     <button
-                        className={`${styles.tab} ${activeTab === 'all' ? styles.tabActive : ''}`}
-                        onClick={() => setActiveTab('all')}
-                    >
-                        All Exercises
-                    </button>
-                    <button
                         className={`${styles.tab} ${activeTab === 'my' ? styles.tabActive : ''}`}
                         onClick={() => setActiveTab('my')}
                     >
                         My Exercises
+                    </button>
+                    <button
+                        className={`${styles.tab} ${activeTab === 'all' ? styles.tabActive : ''}`}
+                        onClick={() => setActiveTab('all')}
+                    >
+                        All Exercises
                     </button>
                 </div>
 

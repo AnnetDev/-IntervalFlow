@@ -5,13 +5,17 @@
   margin-bottom: 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 2;
   background: rgba(16, 16, 37, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
 }
 
 .tab {

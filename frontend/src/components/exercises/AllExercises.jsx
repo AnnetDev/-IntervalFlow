@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react';
-import { Input } from "../common/Button/Input";
-import { Select } from "../common/Button/Select";
-import { Button } from "../common/Button/Button";
-import ExerciseCard from "./ExerciseCard";
-import { getAllExercises } from '../../services/api';
+import { useState } from 'react';
+// import { useEffect } from 'react'; // removed — fetch moved to hook
+import { Select } from '../common/Button/Select';
+import { Button } from '../common/Button/Button';
+import ExerciseCard from './ExerciseCard';
+// import { getAllExercises } from '../../services/api'; // replaced by useFetchData
 import styles from './AllExercises.module.css';
+import { useFetchData } from '../../hooks/useFetchData';
+import { Loader } from '../common/Loader/Loader';
 
 const AllExercises = () => {
-  const [exercises, setExercises] = useState([]);
+  // const [exercises, setExercises] = useState([]); // replaced by hook data
   const [difficulty, setDifficulty] = useState('');
   const [muscleGroup, setMuscleGroup] = useState('');
   const [equipment, setEquipment] = useState('');
+  const { data: exercises = [], isLoading } = useFetchData({ difficulty, muscleGroup, equipment });
 
   const selectOptions = [
     { name: 'Difficulty', options: getSelectOptions(exercises, 'difficulty'), value: difficulty, onChange: setDifficulty },
@@ -18,11 +21,11 @@ const AllExercises = () => {
     { name: 'Equipment', options: getSelectOptions(exercises, 'equipment'), value: equipment, onChange: setEquipment },
   ];
 
-  useEffect(() => {
-    getAllExercises({ difficulty, muscleGroup, equipment })
-      .then(data => setExercises(data))
-      .catch(error => console.error('Error fetching exercises:', error));
-  }, [difficulty, muscleGroup, equipment]);
+  // useEffect(() => {
+  //   getAllExercises({ difficulty, muscleGroup, equipment })
+  //     .then(data => setExercises(data))
+  //     .catch(error => console.error('Error fetching exercises:', error));
+  // }, [difficulty, muscleGroup, equipment]);
 
   function getSelectOptions(exercises, field) {
     const unique = [...new Set(exercises.map(ex => ex[field]).filter(Boolean))];
@@ -53,7 +56,7 @@ const AllExercises = () => {
           </div>
         </div>
         <div className={styles.filterResWrap}>
-          <h3>Found {exercises.length} exercises</h3>
+          <h3>{isLoading ? 'Loading...' : `Found ${exercises.length} exercises`}</h3>
           <Button className={styles.clearFiltersBtn} onClick={() => { handleClearFilters() }}>Clear Filters</Button>
 
         </div>
@@ -61,14 +64,14 @@ const AllExercises = () => {
 
       <div className={styles.exercisesWrap}>
         {/* //display exercises in a grid */}
-
-        <ul className={styles.exerciseList}>
+        {isLoading ? <Loader /> : <ul className={styles.exerciseList}>
           {exercises.map(exercise => (
             <li key={exercise._id}>
               <ExerciseCard exercise={exercise} />
             </li>
           ))}
-        </ul>
+        </ul>}
+
       </div>
 
 
