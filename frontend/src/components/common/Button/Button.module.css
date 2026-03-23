@@ -1,8 +1,16 @@
 .button {
-  composes: glass from global;
-  padding: 0.5rem 1rem;
-    background: linear-gradient(90deg, #ffffff, #e0e7ff, #c7d2fe);
-    border-radius: 10px;
-    font-weight: 600;
-    
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: #fff;
+  padding: 5px 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.1);
 }

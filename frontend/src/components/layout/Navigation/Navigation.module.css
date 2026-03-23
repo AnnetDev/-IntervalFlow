@@ -24,7 +24,7 @@
 
 .navLink svg,
 .navLinkDisabled svg {
-    width: 35px;
+    width: 25px;
     height: auto;
     color: #fff;
     transition: color 0.3s ease;
@@ -32,7 +32,7 @@
 
 @media (min-width: 768px) {
     .navLink svg {
-        width: 38px;
+        width: 30px;
     }
 }
 

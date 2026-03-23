@@ -38,25 +38,29 @@ const AllExercises = () => {
   return (
     <div className={styles.allExercises}>
       <h2 className='visuallyHidden'>All Exercises</h2>
-
       {/* TODO for future: add search */}
+
       <div className={styles.filtersWrapper} >
-        <div className={styles.filters}>
+        <div>
           <h3>Filters:</h3>
-          {selectOptions.map((option) => (
-            <div className={styles.filter} key={option.name}>
-              <h4>{option.name}</h4>
-              <Select options={option.options} value={option.value} onChange={(e) => { option.onChange(e.target.value) }} />
-            </div>
-          ))}
+          <div className={styles.filters}>
+            {selectOptions.map((option) => (
+              <div className={styles.filter} key={option.name}>
+                <h4>{option.name}</h4>
+                <Select options={option.options} value={option.value} onChange={(e) => { option.onChange(e.target.value) }} />
+              </div>
+            ))}
+          </div>
         </div>
-        <Button onClick={() => { handleClearFilters() }}>Clear Filters</Button>
+        <div className={styles.filterResWrap}>
+          <h3>Found {exercises.length} exercises</h3>
+          <Button className={styles.clearFiltersBtn} onClick={() => { handleClearFilters() }}>Clear Filters</Button>
+
+        </div>
       </div>
 
-      <div>
-        <h3>Showing {exercises.length} exercises</h3>
+      <div className={styles.exercisesWrap}>
         {/* //display exercises in a grid */}
-
 
         <ul className={styles.exerciseList}>
           {exercises.map(exercise => (

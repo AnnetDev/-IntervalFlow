@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Button } from '../../components/common/Button/Button';
 import AllExercises from '../../components/exercises/AllExercises';
 import MyExercises from '../../components/exercises/MyExercises';
 import Layout from '../../components/layout/Layout/Layout';
@@ -9,27 +8,25 @@ const ExercisesPage = () => {
     const [activeTab, setActiveTab] = useState('all');
     return (
         <Layout>
+            <div className={styles.exercisesPage}>
+                <h1 className='visuallyHidden'>Exercises Page</h1>
+                <div className={styles.tabs}>
+                    <button
+                        className={`${styles.tab} ${activeTab === 'all' ? styles.tabActive : ''}`}
+                        onClick={() => setActiveTab('all')}
+                    >
+                        All Exercises
+                    </button>
+                    <button
+                        className={`${styles.tab} ${activeTab === 'my' ? styles.tabActive : ''}`}
+                        onClick={() => setActiveTab('my')}
+                    >
+                        My Exercises
+                    </button>
+                </div>
 
-            <h1 className='visuallyHidden'>Exercises Page</h1>
-            {/* //add tabs */}
-            <div className={styles.tabs}>
-                <Button className={activeTab === 'all' ? 'active' : ''}
-                    onClick={() => setActiveTab('all')}
-                    disabled={activeTab === 'all'}
-                >
-                    All Exercises
-                </Button>
-                <Button className={activeTab === 'my' ? 'active' : ''}
-                    onClick={() => setActiveTab('my')}
-                    disabled={activeTab === 'my'}
-                >
-                    My Exercises
-                </Button>
+                {activeTab === 'all' ? <AllExercises /> : <MyExercises />}
             </div>
-
-            {activeTab === 'all' ? <AllExercises /> : <MyExercises />}
-
-
         </Layout>
     );
 };

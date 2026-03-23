@@ -1,14 +1,25 @@
 .exerciseCard {
       composes: glass from global;
       padding: 1rem;
-      display: grid;
+      /* display: grid;
       grid-template-columns: 2fr 1fr;
-      align-items: end;
+      align-items: end; */
       min-width: 300px;
       max-width: 500px;
       position: relative;
       border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: rgba(4,13,18, 0.7);
+      min-height: 245px;
 }     
+
+.exerciseInfo {
+      /* display: flex;
+      flex-direction: column; */
+
+}
 
 .badge {
       position: absolute;
@@ -21,6 +32,67 @@
       font-size: 0.75rem;
 }
 .exerciseName {
-      margin: 0;
+      margin: 0 0 0.75rem;
       padding: 0;
+      max-width: 80%;
+}
+
+.paramTable {
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.paramRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  gap: 1rem;
+}
+
+.paramRow:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.paramRow:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.paramRow dt {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  gap: 3px;
+  align-items:center;
+}
+
+.paramRow dt svg {
+      width:20px;
+      height: auto;
+}
+
+.paramRow dd {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  text-align: right;
+  text-transform: capitalize;
+}
+.cardBtns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 80%;
+      align-items: center;
+   
+    justify-content: center;
+    justify-items: center;
+    align-self: center;
 }
