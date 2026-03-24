@@ -12,7 +12,7 @@
       flex-direction: column;
       justify-content: center;
       background-color: rgba(4,13,18, 0.7);
-      min-height: 245px;
+      min-height: 130px;
 }     
 
 .exerciseInfo {

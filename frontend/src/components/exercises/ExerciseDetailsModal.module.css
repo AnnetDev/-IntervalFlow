@@ -1,0 +1,28 @@
+.exerciseInfo {
+    composes: exerciseInfo from './ExerciseCard.module.css';
+    
+}
+.exerciseInfo::before {
+  display:none;
+}
+.badge {
+    composes: badge from './ExerciseCard.module.css';
+    top: 1rem;
+    left: 1rem;
+    background: transparent;
+}
+
+.exerciseName {
+    composes: exerciseName from './ExerciseCard.module.css';
+    text-align: center;
+    align-self: center;
+   max-width: 100%;
+}
+
+.paramTable {
+    composes: paramTable from './ExerciseCard.module.css';
+}
+
+.paramRow {
+    composes: paramRow from './ExerciseCard.module.css';
+}

@@ -1,31 +1,26 @@
 import { useState } from 'react';
-// import { useEffect } from 'react'; // removed — fetch moved to hook
 import { Select } from '../common/Button/Select';
 import { Button } from '../common/Button/Button';
 import ExerciseCard from './ExerciseCard';
-// import { getAllExercises } from '../../services/api'; // replaced by useFetchData
 import styles from './AllExercises.module.css';
 import { useFetchData } from '../../hooks/useFetchData';
 import { Loader } from '../common/Loader/Loader';
+import { useModal } from '../../hooks/useModal';
+import ExerciseDetailsModal from './ExerciseDetailsModal';
 
 const AllExercises = () => {
-  // const [exercises, setExercises] = useState([]); // replaced by hook data
   const [difficulty, setDifficulty] = useState('');
   const [muscleGroup, setMuscleGroup] = useState('');
   const [equipment, setEquipment] = useState('');
   const { data: exercises = [], isLoading } = useFetchData({ difficulty, muscleGroup, equipment });
+  const { isOpen, modalData, openModal, closeModal } = useModal();
+
 
   const selectOptions = [
     { name: 'Difficulty', options: getSelectOptions(exercises, 'difficulty'), value: difficulty, onChange: setDifficulty },
     { name: 'Muscle Group', options: getSelectOptions(exercises, 'muscleGroup'), value: muscleGroup, onChange: setMuscleGroup },
     { name: 'Equipment', options: getSelectOptions(exercises, 'equipment'), value: equipment, onChange: setEquipment },
   ];
-
-  // useEffect(() => {
-  //   getAllExercises({ difficulty, muscleGroup, equipment })
-  //     .then(data => setExercises(data))
-  //     .catch(error => console.error('Error fetching exercises:', error));
-  // }, [difficulty, muscleGroup, equipment]);
 
   function getSelectOptions(exercises, field) {
     const unique = [...new Set(exercises.map(ex => ex[field]).filter(Boolean))];
@@ -38,6 +33,7 @@ const AllExercises = () => {
     setEquipment('');
   }
 
+  //todo error msg if response !== ok
   return (
     <div className={styles.allExercises}>
       <h2 className='visuallyHidden'>All Exercises</h2>
@@ -67,14 +63,12 @@ const AllExercises = () => {
         {isLoading ? <Loader /> : <ul className={styles.exerciseList}>
           {exercises.map(exercise => (
             <li key={exercise._id}>
-              <ExerciseCard exercise={exercise} />
+              <ExerciseCard exercise={exercise} onViewDetails={openModal} />
             </li>
           ))}
         </ul>}
-
       </div>
-
-
+      <ExerciseDetailsModal isOpen={isOpen} onClose={closeModal} exercise={modalData} />
     </div>
   );
 };
