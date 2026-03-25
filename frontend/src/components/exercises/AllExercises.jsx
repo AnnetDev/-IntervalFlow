@@ -36,7 +36,7 @@ const AllExercises = () => {
   //todo error msg if response !== ok
   return (
     <div className={styles.allExercises}>
-      <h2 className='visuallyHidden'>All Exercises</h2>
+      <h2 className='visuallyHidden'>Exercise Library</h2>
       {/* TODO for future: add search */}
 
       <div className={styles.filtersWrapper} >

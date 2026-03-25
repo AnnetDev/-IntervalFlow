@@ -11,7 +11,7 @@ export function Modal({ isOpen, children, onClose }) {
       <div className={styles.overlay} onClick={onClose} />
       <div className={styles.modalContainer}>
         <button className={styles.closeBtn} onClick={onClose}>
-          <X size={18} />
+          <X size={22} />
         </button>
         {children}
       </div>

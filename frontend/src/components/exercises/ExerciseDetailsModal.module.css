@@ -1,10 +1,11 @@
 .exerciseInfo {
     composes: exerciseInfo from './ExerciseCard.module.css';
-    
 }
+
 .exerciseInfo::before {
-  display:none;
+    display: none;
 }
+
 .badge {
     composes: badge from './ExerciseCard.module.css';
     top: 1rem;
@@ -16,7 +17,7 @@
     composes: exerciseName from './ExerciseCard.module.css';
     text-align: center;
     align-self: center;
-   max-width: 100%;
+    max-width: 100%;
 }
 
 .paramTable {
@@ -25,4 +26,22 @@
 
 .paramRow {
     composes: paramRow from './ExerciseCard.module.css';
+    font-size: 1rem;
+}
+
+.paramRow dt {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.descriptionTitle,
+.description {
+    font-size: 1rem;
+}
+
+.modalActions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
 }

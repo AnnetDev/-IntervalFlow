@@ -5,7 +5,8 @@ import Layout from '../../components/layout/Layout/Layout';
 import styles from './ExercisesPage.module.css';
 
 const ExercisesPage = () => {
-    const [activeTab, setActiveTab] = useState('all');
+    const [activeTab, setActiveTab] = useState('my');
+
     return (
         <Layout>
             <div className={styles.exercisesPage}>
@@ -21,11 +22,11 @@ const ExercisesPage = () => {
                         className={`${styles.tab} ${activeTab === 'all' ? styles.tabActive : ''}`}
                         onClick={() => setActiveTab('all')}
                     >
-                        All Exercises
+                        Exercise Library
                     </button>
                 </div>
 
-                {activeTab === 'all' ? <AllExercises /> : <MyExercises />}
+                {activeTab === 'all' ? <AllExercises /> : <MyExercises onSwitchToAll={() => setActiveTab('all')} />}
             </div>
         </Layout>
     );
