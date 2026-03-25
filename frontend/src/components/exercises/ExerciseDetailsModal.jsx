@@ -11,7 +11,7 @@ export default function ExerciseDetailsModal({ isOpen, onClose, exercise, onAddT
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={styles.exerciseInfo}>
-        <div className={styles.badge}>{isGlobal ? <Globe size={16} /> : <User size={16} />}</div>
+        {/* <div className={styles.badge}>{isGlobal ? <Globe size={16} /> : <User size={16} />}</div> */}
         <h3 className={styles.exerciseName}>{exercise.name}</h3>
         <dl className={styles.paramTable}>
           <div className={styles.paramRow}>

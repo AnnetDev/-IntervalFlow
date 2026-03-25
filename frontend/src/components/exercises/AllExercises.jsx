@@ -6,7 +6,11 @@ import styles from './AllExercises.module.css';
 import { useFetchData } from '../../hooks/useFetchData';
 import { Loader } from '../common/Loader/Loader';
 import { useModal } from '../../hooks/useModal';
+import { useLocalExercises } from '../../hooks/useLocalExercises';
+import { useToast } from '../../hooks/useToast';
+import { Toast } from '../common/Toast/Toast';
 import ExerciseDetailsModal from './ExerciseDetailsModal';
+import { BicepsFlexed, ChartNoAxesColumnIncreasing, ListChecks } from 'lucide-react';
 
 const AllExercises = () => {
   const [difficulty, setDifficulty] = useState('');
@@ -14,12 +18,22 @@ const AllExercises = () => {
   const [equipment, setEquipment] = useState('');
   const { data: exercises = [], isLoading } = useFetchData({ difficulty, muscleGroup, equipment });
   const { isOpen, modalData, openModal, closeModal } = useModal();
+  const { copyFromLibrary } = useLocalExercises();
+  const { message, showToast } = useToast();
+
+  function handleAddToMine(exercise) {
+    const added = copyFromLibrary(exercise);
+    showToast(added
+      ? `"${exercise.name}" added to My Exercises`
+      : `"${exercise.name}" is already in My Exercises`
+    );
+  }
 
 
   const selectOptions = [
-    { name: 'Difficulty', options: getSelectOptions(exercises, 'difficulty'), value: difficulty, onChange: setDifficulty },
-    { name: 'Muscle Group', options: getSelectOptions(exercises, 'muscleGroup'), value: muscleGroup, onChange: setMuscleGroup },
-    { name: 'Equipment', options: getSelectOptions(exercises, 'equipment'), value: equipment, onChange: setEquipment },
+    { name: 'Difficulty', options: getSelectOptions(exercises, 'difficulty'), value: difficulty, onChange: setDifficulty, icon: <ChartNoAxesColumnIncreasing size={12} /> },
+    { name: 'Muscle Group', options: getSelectOptions(exercises, 'muscleGroup'), value: muscleGroup, onChange: setMuscleGroup, icon: <BicepsFlexed size={12} /> },
+    { name: 'Equipment', options: getSelectOptions(exercises, 'equipment'), value: equipment, onChange: setEquipment, icon: <ListChecks size={12} /> },
   ];
 
   function getSelectOptions(exercises, field) {
@@ -45,7 +59,9 @@ const AllExercises = () => {
           <div className={styles.filters}>
             {selectOptions.map((option) => (
               <div className={styles.filter} key={option.name}>
-                <h4>{option.name}</h4>
+                <div className={styles.filterTitle}>{option.icon}
+                  <h4>{option.name}</h4>
+                </div>
                 <Select options={option.options} value={option.value} onChange={(e) => { option.onChange(e.target.value) }} />
               </div>
             ))}
@@ -59,16 +75,16 @@ const AllExercises = () => {
       </div>
 
       <div className={styles.exercisesWrap}>
-        {/* //display exercises in a grid */}
         {isLoading ? <Loader /> : <ul className={styles.exerciseList}>
           {exercises.map(exercise => (
             <li key={exercise._id}>
-              <ExerciseCard exercise={exercise} onViewDetails={openModal} />
+              <ExerciseCard exercise={exercise} onViewDetails={openModal} onAddToMine={() => handleAddToMine(exercise)} />
             </li>
           ))}
         </ul>}
       </div>
-      <ExerciseDetailsModal isOpen={isOpen} onClose={closeModal} exercise={modalData} />
+      <Toast message={message} />
+      <ExerciseDetailsModal isOpen={isOpen} onClose={closeModal} exercise={modalData} onAddToMine={() => { handleAddToMine(modalData); closeModal(); }} />
     </div>
   );
 };

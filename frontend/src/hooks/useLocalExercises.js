@@ -23,8 +23,11 @@ export function useLocalExercises() {
     setExercises(prev => [...prev, newExercise]);
   }
 
-  // Copy from DB — takes existing exercise, strips DB id, saves locally
+  // Copy from DB — returns false if duplicate already exists
   function copyFromLibrary(exercise) {
+    const alreadyExists = exercises.some(ex => ex.copiedFrom === exercise._id);
+    if (alreadyExists) return false;
+
     const copy = {
       ...exercise,
       id: crypto.randomUUID(),
@@ -33,6 +36,7 @@ export function useLocalExercises() {
       createdAt: new Date().toISOString(),
     };
     setExercises(prev => [...prev, copy]);
+    return true;
   }
 
   function updateExercise(id, updatedData) {

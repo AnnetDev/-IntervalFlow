@@ -1,30 +1,50 @@
-@keyframes fadeIn {
+@keyframes overlayIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
-@keyframes slideUp {
+@keyframes overlayOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes containerIn {
   from {
     opacity: 0;
-    transform: translate(-50%, -45%);
+    transform: translate(-50%, -46%) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes containerOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -46%) scale(0.95);
   }
 }
 
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.55);
   z-index: 100;
-  animation: fadeIn 0.2s ease;
+  animation: overlayIn 0.2s ease forwards;
+}
+
+.overlayOut {
+  animation: overlayOut 0.25s ease forwards;
 }
 
 .modalContainer {
   composes: glass from global;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem 1.5rem;
   min-width: 70%;
   max-width: 500px;
   border-radius: 16px;
@@ -36,7 +56,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 101;
-  animation: slideUp 0.25s ease;
+  animation: containerIn 0.3s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+}
+
+.containerOut {
+  animation: containerOut 0.25s ease forwards;
 }
 
 @media(min-width: 768px) {
