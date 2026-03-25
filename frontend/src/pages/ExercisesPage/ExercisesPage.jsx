@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import AllExercises from '../../components/exercises/AllExercises';
-import MyExercises from '../../components/exercises/MyExercises';
+import AllExercises from '../../components/exercises/AllExercises/AllExercises';
+import MyExercises from '../../components/exercises/MyExercises/MyExercises';
 import Layout from '../../components/layout/Layout/Layout';
 import styles from './ExercisesPage.module.css';
 

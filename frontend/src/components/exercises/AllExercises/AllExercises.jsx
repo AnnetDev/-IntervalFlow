@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { Select } from '../common/Button/Select';
-import { Button } from '../common/Button/Button';
-import ExerciseCard from './ExerciseCard';
+import { Select } from '../../common/Select/Select';
+import { Button } from '../../common/Button/Button';
+import ExerciseCard from '../ExerciseCard/ExerciseCard';
 import styles from './AllExercises.module.css';
-import { useFetchData } from '../../hooks/useFetchData';
-import { Loader } from '../common/Loader/Loader';
-import { useModal } from '../../hooks/useModal';
-import { useLocalExercises } from '../../hooks/useLocalExercises';
-import { useToast } from '../../hooks/useToast';
-import { Toast } from '../common/Toast/Toast';
-import ExerciseDetailsModal from './ExerciseDetailsModal';
+import { useFetchData } from '../../../hooks/useFetchData';
+import { Loader } from '../../common/Loader/Loader';
+import { useModal } from '../../../hooks/useModal';
+import { useLocalExercises } from '../../../hooks/useLocalExercises';
+import { useToast } from '../../../hooks/useToast';
+import { Toast } from '../../common/Toast/Toast';
+import ExerciseDetailsModal from '../ExerciseDetailsModal/ExerciseDetailsModal';
 import { BicepsFlexed, ChartNoAxesColumnIncreasing, ListChecks } from 'lucide-react';
 
 const AllExercises = () => {

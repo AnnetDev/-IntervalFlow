@@ -66,6 +66,7 @@
 @media(min-width: 768px) {
   .modalContainer {
     min-width: 300px;
+    width: 50%;
   }
 }
 

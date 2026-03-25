@@ -1,5 +1,5 @@
 .exerciseInfo {
-    composes: exerciseInfo from './ExerciseCard.module.css';
+    composes: exerciseInfo from '../ExerciseCard/ExerciseCard.module.css';
 }
 
 .exerciseInfo::before {
@@ -7,14 +7,14 @@
 }
 
 .badge {
-    composes: badge from './ExerciseCard.module.css';
+    composes: badge from '../ExerciseCard/ExerciseCard.module.css';
     top: 1rem;
     left: 1rem;
     background: transparent;
 }
 
 .exerciseName {
-    composes: exerciseName from './ExerciseCard.module.css';
+    composes: exerciseName from '../ExerciseCard/ExerciseCard.module.css';
     text-align: center;
     align-self: center;
     max-width: 100%;

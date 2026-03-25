@@ -1,6 +1,6 @@
 import styles from './ExerciseCard.module.css';
-import { Globe, User } from 'lucide-react';
-import { Button } from '../common/Button/Button';
+// import { Globe, User } from 'lucide-react';
+import { Button } from '../../common/Button/Button';
 import { BicepsFlexed, ListChecks, Eye, Plus, Trash2, ChartNoAxesColumnIncreasing } from 'lucide-react';
 
 const ExerciseCard = ({ exercise, onViewDetails, onAddToMine, onDelete }) => {

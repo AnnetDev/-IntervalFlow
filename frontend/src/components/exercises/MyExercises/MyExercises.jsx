@@ -1,18 +1,18 @@
-import { Button } from '../common/Button/Button';
+import { Button } from '../../common/Button/Button';
 import { Plus, LayersPlus } from 'lucide-react';
 import styles from './MyExercises.module.css';
-import { useModal } from '../../hooks/useModal';
-import { useLocalExercises } from '../../hooks/useLocalExercises';
-import { Modal } from '../common/Modal/Modal';
-import CreateExerciseModal from './CreateExerciseModal';
-import ExerciseCard from './ExerciseCard';
-import ExerciseDetailsModal from './ExerciseDetailsModal';
+import { useModal } from '../../../hooks/useModal';
+import { useLocalExercises } from '../../../hooks/useLocalExercises';
+import { Modal } from '../../common/Modal/Modal';
+import CreateExerciseModal from '../CreateExerciseModal/CreateExerciseModal';
+import ExerciseCard from '../ExerciseCard/ExerciseCard';
+import ExerciseDetailsModal from '../ExerciseDetailsModal/ExerciseDetailsModal';
 
 const MyExercises = ({ onSwitchToAll }) => {
   const createModal = useModal();
   const detailsModal = useModal();
   const confirmModal = useModal();
-  const { exercises, deleteExercise } = useLocalExercises();
+  const { exercises, createExercise, deleteExercise } = useLocalExercises();
 
   function handleDeleteClick(exercise) {
     detailsModal.closeModal();
@@ -53,7 +53,7 @@ const MyExercises = ({ onSwitchToAll }) => {
         </ul>
       )}
 
-      <CreateExerciseModal isOpen={createModal.isOpen} onClose={createModal.closeModal} />
+      <CreateExerciseModal isOpen={createModal.isOpen} onClose={createModal.closeModal} onSave={createExercise} />
 
       <ExerciseDetailsModal
         isOpen={detailsModal.isOpen}

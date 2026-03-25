@@ -1,7 +1,7 @@
 import styles from './ExerciseDetailsModal.module.css';
 import { Globe, User, BicepsFlexed, Timer, ChartNoAxesColumnIncreasing, ListChecks, Plus, Pencil, Trash2 } from 'lucide-react';
-import { Modal } from '../common/Modal/Modal';
-import { Button } from '../common/Button/Button';
+import { Modal } from '../../common/Modal/Modal';
+import { Button } from '../../common/Button/Button';
 
 
 export default function ExerciseDetailsModal({ isOpen, onClose, exercise, onAddToMine, onEdit, onDelete }) {
