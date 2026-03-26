@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { Select } from '../../common/Select/Select';
-import { Button } from '../../common/Button/Button';
 import ExerciseCard from '../ExerciseCard/ExerciseCard';
 import styles from './AllExercises.module.css';
 import { useFetchData } from '../../../hooks/useFetchData';
@@ -11,6 +9,7 @@ import { useToast } from '../../../hooks/useToast';
 import { Toast } from '../../common/Toast/Toast';
 import ExerciseDetailsModal from '../ExerciseDetailsModal/ExerciseDetailsModal';
 import { BicepsFlexed, ChartNoAxesColumnIncreasing, ListChecks } from 'lucide-react';
+import { ExerciseFilters } from '../ExerciseFilters/ExerciseFilters';
 
 const AllExercises = () => {
   const [difficulty, setDifficulty] = useState('');
@@ -53,26 +52,12 @@ const AllExercises = () => {
       <h2 className='visuallyHidden'>Exercise Library</h2>
       {/* TODO for future: add search */}
 
-      <div className={styles.filtersWrapper} >
-        <div>
-          <h3>Filters:</h3>
-          <div className={styles.filters}>
-            {selectOptions.map((option) => (
-              <div className={styles.filter} key={option.name}>
-                <div className={styles.filterTitle}>{option.icon}
-                  <h4>{option.name}</h4>
-                </div>
-                <Select options={option.options} value={option.value} onChange={(e) => { option.onChange(e.target.value) }} />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={styles.filterResWrap}>
-          <h3>{isLoading ? 'Loading...' : `Found ${exercises.length} exercises`}</h3>
-          <Button className={styles.clearFiltersBtn} onClick={() => { handleClearFilters() }}>Clear Filters</Button>
-
-        </div>
-      </div>
+      <ExerciseFilters
+        selectOptions={selectOptions}
+        onClearFilters={handleClearFilters}
+        exerciseCount={exercises.length}
+        isLoading={isLoading}
+      />
 
       <div className={styles.exercisesWrap}>
         {isLoading ? <Loader /> : <ul className={styles.exerciseList}>

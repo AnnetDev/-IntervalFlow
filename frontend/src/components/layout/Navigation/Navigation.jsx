@@ -3,6 +3,7 @@ import { User, Dumbbell, Timer, Layers } from 'lucide-react';
 import styles from './Navigation.module.css';
 
 export function Navigation() {
+
     const navItems = [
         {
             name: 'Exercises',
@@ -37,10 +38,8 @@ export function Navigation() {
                     {navItems.map((item) => (
                         <li className={styles.navItem} key={item.path}>
                             <NavLink
-                                className={
-                                    item.disabled
-                                        ? styles.navLinkDisabled
-                                        : styles.navLink
+                                className={({ isActive }) =>
+                                    item.disabled ? styles.navLinkDisabled : isActive ? styles.navLinkActive : styles.navLink
                                 }
                                 to={item.path}
                             >

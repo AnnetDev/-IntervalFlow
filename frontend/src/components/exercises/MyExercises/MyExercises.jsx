@@ -12,7 +12,13 @@ const MyExercises = ({ onSwitchToAll }) => {
   const createModal = useModal();
   const detailsModal = useModal();
   const confirmModal = useModal();
-  const { exercises, createExercise, deleteExercise } = useLocalExercises();
+  const editModal = useModal();
+  const { exercises, createExercise, updateExercise, deleteExercise } = useLocalExercises();
+
+  function handleEditClick(exercise) {
+    detailsModal.closeModal();
+    editModal.openModal(exercise);
+  }
 
   function handleDeleteClick(exercise) {
     detailsModal.closeModal();
@@ -59,7 +65,16 @@ const MyExercises = ({ onSwitchToAll }) => {
         isOpen={detailsModal.isOpen}
         onClose={detailsModal.closeModal}
         exercise={detailsModal.modalData}
+        onEdit={() => handleEditClick(detailsModal.modalData)}
         onDelete={() => handleDeleteClick(detailsModal.modalData)}
+      />
+
+      <CreateExerciseModal
+        key={editModal.modalData?.id}
+        isOpen={editModal.isOpen}
+        onClose={editModal.closeModal}
+        initialData={editModal.modalData}
+        onSave={(data) => { updateExercise(editModal.modalData.id, data); editModal.closeModal(); }}
       />
 
       <Modal isOpen={confirmModal.isOpen} onClose={confirmModal.closeModal}>

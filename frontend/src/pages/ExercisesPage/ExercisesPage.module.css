@@ -9,15 +9,18 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     padding-top: 0.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .tabs {
         position: sticky;
         top: 0;
         z-index: 2;
     }
-}
+} */
 
 .tab {
     composes: glass from global;

@@ -1,7 +1,7 @@
 .exerciseCard {
     composes: glass from global;
     padding: 0.7rem 1rem;
-    min-width: 300px;
+    min-width: 150px;
     max-width: 600px;
     position: relative;
     border-radius: 16px;

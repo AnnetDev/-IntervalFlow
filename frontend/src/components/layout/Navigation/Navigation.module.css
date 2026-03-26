@@ -6,10 +6,12 @@
 .navList {
     list-style: none;
     display: flex;
+    flex-flow: wrap;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     padding: 0;
+    margin: 0;
 }
 
 .navLink {
@@ -22,18 +24,32 @@
     pointer-events: none;
 }
 
+.navItem {
+    padding: 0.8rem;
+    background-color: rgba(40, 44, 68, 0);
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navItem:has(.navLinkActive) {
+    background-color: rgba(40, 44, 68, 0.3);
+}
+
+.navLinkActive {
+    text-decoration: none;
+}
+
 .navLink svg,
-.navLinkDisabled svg {
-    width: 25px;
+.navLinkDisabled svg,
+li:has(.navLinkActive) svg {
+    width: 15px;
     height: auto;
     color: #fff;
     transition: color 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .navLink svg {
-        width: 30px;
-    }
+.navText {
+    font-size: 0.7rem;
 }
 
 .iconWrapper {
@@ -42,7 +58,27 @@
     align-items: center;
     gap: 5px;
 }
-.navText {
+
+.navText,
+li:has(.navLinkActive) .navText {
     font-size: 1rem;
     color: #fff;
+    text-decoration: none;
+}
+
+@media (min-width: 380px) {
+    .navLink svg,
+    .navLinkDisabled svg,
+    li:has(.navLinkActive) svg {
+        width: 25px;
+        height: auto;
+        color: #fff;
+        transition: color 0.3s ease;
+    }
+}
+
+@media (min-width: 768px) {
+    .navLink svg {
+        width: 30px;
+    }
 }

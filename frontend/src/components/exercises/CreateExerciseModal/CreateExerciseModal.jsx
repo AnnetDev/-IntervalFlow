@@ -3,38 +3,12 @@ import { Modal } from '../../common/Modal/Modal';
 import { Button } from '../../common/Button/Button';
 import { Select } from '../../common/Select/Select';
 import { Input } from '../../common/Input/Input';
+import { DIFFICULTY_OPTIONS, MUSCLE_OPTIONS, INITIAL } from '../../../utils/exerciseOptionsConstants';
 import styles from './CreateExerciseModal.module.css';
 
-const DIFFICULTY_OPTIONS = [
-  { value: '', label: 'Not set' },
-  { value: 'beginner', label: 'Beginner' },
-  { value: 'intermediate', label: 'Intermediate' },
-  { value: 'advanced', label: 'Advanced' },
-];
-
-const MUSCLE_OPTIONS = [
-  { value: '', label: 'Not set' },
-  { value: 'core', label: 'Core' },
-  { value: 'legs', label: 'Legs' },
-  { value: 'glutes', label: 'Glutes' },
-  { value: 'upper-body', label: 'Upper Body' },
-  { value: 'back', label: 'Back' },
-  { value: 'cardio', label: 'Cardio' },
-  { value: 'full-body', label: 'Full Body' },
-  { value: 'mobility', label: 'Mobility' },
-];
-
-const INITIAL = {
-  name: '',
-  difficulty: '',
-  muscleGroup: '',
-  duration: '',
-  equipment: '',
-  description: '',
-};
-
-export default function CreateExerciseModal({ isOpen, onClose, onSave }) {
-  const [form, setForm] = useState(INITIAL);
+export default function CreateExerciseModal({ isOpen, onClose, onSave, initialData }) {
+  const isEditMode = !!initialData;
+  const [form, setForm] = useState(initialData ?? INITIAL);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -54,7 +28,7 @@ export default function CreateExerciseModal({ isOpen, onClose, onSave }) {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <h3 className={styles.title}>New Exercise</h3>
+      <h3 className={styles.title}>{isEditMode ? 'Edit Exercise' : 'New Exercise'}</h3>
       <form className={styles.form} onSubmit={handleSubmit}>
 
         <label className={styles.field}>
