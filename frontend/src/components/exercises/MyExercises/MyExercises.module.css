@@ -1,46 +1,47 @@
 .btnsWrapper {
-  display: flex;
-  gap: 2rem;
+    display: flex;
+    gap: 2rem;
 }
 
 .confirmText {
-  margin: 0.5rem 0 1.5rem;
-  line-height: 1.5;
+    margin: 0.5rem 0 1.5rem;
+    line-height: 1.5;
 }
 
 .confirmActions {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: flex-end;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
 }
 
 .btnDanger {
-  background: rgba(200, 50, 70, 0.3);
-  border-color: rgba(200, 50, 70, 0.5);
+    background: rgba(200, 50, 70, 0.3);
+    border-color: rgba(200, 50, 70, 0.5);
 }
 
 .btnDanger:hover {
-  background: rgba(200, 50, 70, 0.5);
+    background: rgba(200, 50, 70, 0.5);
 }
 
 .exerciseList {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    column-gap: 10px;
+    row-gap: 30px;
+    padding: 0;
 }
 
 @media (min-width: 500px) {
-  .exerciseList {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+    .exerciseList {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (min-width: 900px) {
-  .exerciseList {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+    .exerciseList {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }

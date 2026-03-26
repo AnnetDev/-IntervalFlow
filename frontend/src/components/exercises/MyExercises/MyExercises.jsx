@@ -1,5 +1,5 @@
 import { Button } from '../../common/Button/Button';
-import { Plus, LayersPlus } from 'lucide-react';
+import { Plus, LayersPlus, Trash2 } from 'lucide-react';
 import styles from './MyExercises.module.css';
 import { useModal } from '../../../hooks/useModal';
 import { useLocalExercises } from '../../../hooks/useLocalExercises';
@@ -83,7 +83,7 @@ const MyExercises = ({ onSwitchToAll }) => {
         </p>
         <div className={styles.confirmActions}>
           <Button onClick={confirmModal.closeModal}>Cancel</Button>
-          <Button onClick={handleConfirmDelete} className={styles.btnDanger}>Delete</Button>
+          <Button onClick={handleConfirmDelete} className={styles.btnDanger}><Trash2 size={16} />Delete</Button>
         </div>
       </Modal>
     </div>

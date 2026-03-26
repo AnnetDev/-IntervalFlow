@@ -45,7 +45,7 @@ export default function ExerciseDetailsModal({ isOpen, onClose, exercise, onAddT
             <Button onClick={onEdit}>
               <Pencil size={16} /> Edit
             </Button>
-            <Button onClick={onDelete}>
+            <Button onClick={onDelete} variant="delete">
               <Trash2 size={16} /> Delete
             </Button>
           </>
