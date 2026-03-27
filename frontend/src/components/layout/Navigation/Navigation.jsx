@@ -12,16 +12,16 @@ export function Navigation() {
             disabled: false,
         },
         {
-            name: 'Trainings',
-            path: '/trainings',
-            icon: <Layers />,
-            disabled: true,
-        },
-        {
             name: 'Timer',
             path: '/timer',
             icon: <Timer />,
             disabled: false
+        },
+        {
+            name: 'Trainings',
+            path: '/trainings',
+            icon: <Layers />,
+            disabled: true,
         },
         {
             name: 'Profile',

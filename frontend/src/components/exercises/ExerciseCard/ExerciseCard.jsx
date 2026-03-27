@@ -1,6 +1,6 @@
 import styles from './ExerciseCard.module.css';
 import { Button } from '../../common/Button/Button';
-import { BicepsFlexed, ListChecks, Eye, Plus, Trash2, ChartNoAxesColumnIncreasing } from 'lucide-react';
+import { BicepsFlexed, ListChecks, Eye, Plus, Trash2, ChartNoAxesColumnIncreasing, Dumbbell } from 'lucide-react';
 
 const ExerciseCard = ({ exercise, onViewDetails, onAddToMine, onDelete }) => {
   // const isUserCreated = !!exercise.createdBy;
@@ -12,7 +12,8 @@ const ExerciseCard = ({ exercise, onViewDetails, onAddToMine, onDelete }) => {
 
       <div className={styles.exerciseInfo}>
         <div className={`${styles.cardHeader} ${styles[`${exercise.difficulty}Header`]}`}>
-          <h3 className={styles.exerciseName}>{exercise.name}</h3>
+          {/* <h3 className={styles.exerciseName}>{exercise.name}</h3> */}
+          <h3 className={`${styles.exerciseName} ${styles[`${exercise.difficulty}Name`]}`}> {exercise.name}</h3>
 
         </div>
         <div className={styles.exerciseParams}>
@@ -32,9 +33,7 @@ const ExerciseCard = ({ exercise, onViewDetails, onAddToMine, onDelete }) => {
         </Button> : <Button onClick={onDelete} variant="delete">
           <Trash2 size={16} />Delete
         </Button>}
-
       </div>
-
     </div>
   );
 }

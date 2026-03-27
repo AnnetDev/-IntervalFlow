@@ -1,5 +1,5 @@
 import styles from './ExerciseDetailsModal.module.css';
-import { Globe, User, BicepsFlexed, Timer, ChartNoAxesColumnIncreasing, ListChecks, Plus, Pencil, Trash2 } from 'lucide-react';
+import { BicepsFlexed, Timer, ChartNoAxesColumnIncreasing, ListChecks, Plus, Pencil, Trash2, Dumbbell } from 'lucide-react';
 import { Modal } from '../../common/Modal/Modal';
 import { Button } from '../../common/Button/Button';
 
@@ -11,33 +11,26 @@ export default function ExerciseDetailsModal({ isOpen, onClose, exercise, onAddT
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={styles.exerciseInfo}>
-        {/* <div className={styles.badge}>{isGlobal ? <Globe size={16} /> : <User size={16} />}</div> */}
-        <h3 className={styles.exerciseName}>{exercise.name}</h3>
-        <dl className={styles.paramTable}>
-          <div className={styles.paramRow}>
-            <dt><ChartNoAxesColumnIncreasing />Difficulty</dt>
-            <dd>{exercise.difficulty}</dd>
-          </div>
-          <div className={styles.paramRow}>
-            <dt><BicepsFlexed />Muscle Group</dt>
-            <dd>{exercise.muscleGroup}</dd>
-          </div>
-          <div className={styles.paramRow}>
-            <dt><Timer />Duration</dt>
-            <dd>{exercise.duration}s</dd>
-          </div>
-          <div className={styles.paramRow}>
-            <dt><ListChecks />Equipment</dt>
-            <dd>{exercise.equipment}</dd>
-          </div>
-        </dl>
-        <h4 className={styles.descriptionTitle}>Description</h4>
-        <p className={styles.description}>{exercise.description}</p>
+        <div className={`${styles.exerciseDetailsHeader} ${styles[`${exercise.difficulty}Header`]}`}>
+          <h3 className={styles.exerciseName}>{exercise.name}</h3>
+        </div>
+
+        <div className={styles.exerciseParams}>
+          <div className={`${styles.difficultyBadge} ${styles[exercise.difficulty]}`}><ChartNoAxesColumnIncreasing size={16} />{exercise.difficulty}</div>
+          <div className={styles.exerciseParam}><BicepsFlexed size={16} />{exercise.muscleGroup}</div>
+          {exercise.equipment && exercise.equipment !== 'none' && <div className={styles.exerciseParam}><ListChecks size={16} />{exercise.equipment}</div>}
+          <div className={styles.exerciseParam}><Timer size={16} /> {exercise.duration}s</div>
+        </div>
+        <div className={styles.descriptionWrap}>
+          <h4 className={styles.descriptionTitle}>Description</h4>
+          <p className={styles.description}>{exercise.description}</p>
+        </div>
+
       </div>
 
       <div className={styles.modalActions}>
         {isGlobal ? (
-          <Button onClick={onAddToMine}>
+          <Button onClick={onAddToMine} variant="add">
             <Plus size={16} /> Add to Mine
           </Button>
         ) : (
