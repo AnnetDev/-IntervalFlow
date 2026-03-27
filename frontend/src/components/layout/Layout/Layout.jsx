@@ -32,9 +32,10 @@ const Layout = ({ children }) => {
         <div
             style={{
                 background,
-                minHeight: '100vh',
+                height: '100vh',
                 display: 'flex',
                 flexDirection: 'column',
+                overflow: 'hidden',
             }}
             className={styles.layout}
         >

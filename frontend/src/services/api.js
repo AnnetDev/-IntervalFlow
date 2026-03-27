@@ -1,4 +1,5 @@
 const API_BASE_URL = 'https://intervalflow-api.onrender.com/api';
+// custom hook
 
 export async function getAllExercises(filters = {}) {
   try {

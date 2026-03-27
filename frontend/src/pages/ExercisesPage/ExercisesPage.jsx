@@ -1,35 +1,33 @@
 import { useState } from 'react';
-import { Button } from '../../components/common/Button/Button';
-import AllExercises from '../../components/exercises/AllExercises';
-import MyExercises from '../../components/exercises/MyExercises';
+import AllExercises from '../../components/exercises/AllExercises/AllExercises';
+import MyExercises from '../../components/exercises/MyExercises/MyExercises';
 import Layout from '../../components/layout/Layout/Layout';
 import styles from './ExercisesPage.module.css';
 
 const ExercisesPage = () => {
-    const [activeTab, setActiveTab] = useState('all');
+    const [activeTab, setActiveTab] = useState('my');
+
     return (
         <Layout>
+            <div className={styles.exercisesPage}>
+                <h1 className='visuallyHidden'>Exercises Page</h1>
+                <div className={styles.tabs}>
+                    <button
+                        className={`${styles.tab} ${activeTab === 'my' ? styles.tabActive : ''}`}
+                        onClick={() => setActiveTab('my')}
+                    >
+                        My Exercises
+                    </button>
+                    <button
+                        className={`${styles.tab} ${activeTab === 'all' ? styles.tabActive : ''}`}
+                        onClick={() => setActiveTab('all')}
+                    >
+                        Exercise Library
+                    </button>
+                </div>
 
-            <h1 className='visuallyHidden'>Exercises Page</h1>
-            {/* //add tabs */}
-            <div className={styles.tabs}>
-                <Button className={activeTab === 'all' ? 'active' : ''}
-                    onClick={() => setActiveTab('all')}
-                    disabled={activeTab === 'all'}
-                >
-                    All Exercises
-                </Button>
-                <Button className={activeTab === 'my' ? 'active' : ''}
-                    onClick={() => setActiveTab('my')}
-                    disabled={activeTab === 'my'}
-                >
-                    My Exercises
-                </Button>
+                {activeTab === 'all' ? <AllExercises /> : <MyExercises onSwitchToAll={() => setActiveTab('all')} />}
             </div>
-
-            {activeTab === 'all' ? <AllExercises /> : <MyExercises />}
-
-
         </Layout>
     );
 };

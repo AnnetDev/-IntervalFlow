@@ -1,0 +1,22 @@
+.select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: white;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+  width: 100%;
+  cursor: pointer;
+}
+
+.select:focus {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.select option {
+  background: #1a1730;
+  color: white;
+}

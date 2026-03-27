@@ -1,0 +1,111 @@
+.exerciseInfo {
+    /* composes: exerciseInfo from '../ExerciseCard/ExerciseCard.module.css'; */
+    border-radius: 16px;
+    margin-top: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(16, 16, 37, 0.85);
+    border: 0.2px solid rgba(255, 255, 255, 0.2);
+}
+
+.exerciseInfo::before {
+    display: none;
+}
+
+.exerciseDetailsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(-225deg, #e3fdf5 0%, #ffe6fa 100%);
+    width: 100%;
+    padding: 0.7rem 1rem;
+    color: rgba(4, 13, 18, 0.9);
+    height: 70px;
+    position: relative;
+}
+
+.descriptionWrap {
+    padding: 0.7rem 1rem;
+}
+
+.badge {
+    composes: badge from '../ExerciseCard/ExerciseCard.module.css';
+    top: 1rem;
+    left: 1rem;
+    background: transparent;
+}
+
+.exerciseName {
+    composes: exerciseName from '../ExerciseCard/ExerciseCard.module.css';
+    text-align: center;
+    align-self: center;
+    max-width: 100%;
+}
+
+.exerciseParams {
+    padding: 1rem 1rem 0.7rem;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.3rem 0.3rem;
+    justify-content: center;
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    /* height: 80px; */
+}
+
+.exerciseParam {
+    text-transform: capitalize;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.4rem 0.4rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 25px;
+}
+
+.difficultyBadge {
+    composes: difficultyBadge from '../ExerciseCard/ExerciseCard.module.css';
+}
+
+.beginnerHeader {
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.intermediateHeader {
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+.advancedHeader {
+    background-image: linear-gradient(to left, #ff0844 0%, #ffb199 100%);
+}
+
+.beginner {
+    composes: beginner from '../ExerciseCard/ExerciseCard.module.css';
+}
+
+.intermediate {
+    composes: intermediate from '../ExerciseCard/ExerciseCard.module.css';
+}
+
+.advanced {
+    composes: advanced from '../ExerciseCard/ExerciseCard.module.css';
+}
+
+.descriptionTitle {
+    text-align: center;
+    margin: 0.2rem 0;
+}
+
+.descriptionTitle,
+.description {
+    font-size: 1rem;
+}
+
+.modalActions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+}
