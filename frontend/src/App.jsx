@@ -4,6 +4,8 @@ import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
 import TimerPage from './pages/TimerPage/TimerPage';
 import TrainingsPage from './pages/TrainingsPage/TrainingsPage';
 import SplashPage from './pages/SplashPage/SplashPage';
+import AboutPage from './pages/AboutPage/AboutPage';
+import AuthorPage from './pages/AuthorPage/AuthorPage';
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
                     <Route path="/timer" element={<TimerPage />} />
                     <Route path="/trainings" element={<TrainingsPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/author" element={<AuthorPage />} />
                 </Routes>
             </BrowserRouter>
         </>

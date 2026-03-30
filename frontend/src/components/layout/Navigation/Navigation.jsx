@@ -27,7 +27,7 @@ export function Navigation() {
             name: 'Profile',
             path: '/profile',
             icon: <User />,
-            disabled: true
+            disabled: false
         },
     ];
 
