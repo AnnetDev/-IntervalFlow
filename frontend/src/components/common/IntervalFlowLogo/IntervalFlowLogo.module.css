@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 15px;
 }
 
 @media (min-width: 768px) {
@@ -14,7 +15,7 @@
 .logotext {
     font-size: 2.5rem;
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 10px;
     padding: 0;
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     background: linear-gradient(90deg, #ffffff, #e0e7ff, #c7d2fe);
@@ -32,6 +33,24 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.logotextDescription {
+    font-size: 1.2rem;
+    letter-spacing: 2.5px;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(90deg, #e0e7ff, #c7d2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding: 0;
+}
+
+.LogoLine {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    background: linear-gradient(to right, #5f69e1, #3cb9af, #ae57ba);
 }
 
 .animItem {

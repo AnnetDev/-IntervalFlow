@@ -1,5 +1,5 @@
 // import IntervalFlowLogo from '../../common/IntervalFlowLogo/IntervalFlowLogo';
-import TimerIcon from '../../common/IntervalFlowLogo/TimerIcon';
+import RunnerIcon from '../../common/IntervalFlowLogo/RunnerIcon';
 import styles from './Header.module.css';
 // import { Github, Linkedin } from 'lucide-react';
 // import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerIcon}>
-        <TimerIcon />
+        <RunnerIcon />
         Interval Flow
       </div>
 
