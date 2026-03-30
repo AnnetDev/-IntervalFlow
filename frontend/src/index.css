@@ -34,8 +34,8 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1400px;
-    padding: 10px 30px;
+    max-width: 1200px;
+    padding: 10px 20px;
     margin: 0.5rem auto 0 auto;
     overflow-y: auto;
     min-height: 0;
