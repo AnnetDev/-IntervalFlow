@@ -11,8 +11,8 @@ import ExerciseDetailsModal from '../ExerciseDetailsModal/ExerciseDetailsModal';
 import styles from './AllExercises.module.css';
 
 const AllExercises = () => {
-  const { filters, selectOptions, handleClearFilters } = useExerciseFilters()
-  const { data: exercises = [], isLoading, error } = useFetchData(filters);
+  const { data: allExercises = [], isLoading, error } = useFetchData();
+  const { filtered: exercises, selectOptions, handleClearFilters } = useExerciseFilters(allExercises);
   const { isOpen, modalData, openModal, closeModal } = useModal();
   const { copyFromLibrary } = useLocalExercises();
   const { message, showToast } = useToast();

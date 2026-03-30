@@ -24,6 +24,11 @@
     pointer-events: none;
 }
 
+.navLinkDisabled svg,
+.navLinkDisabled .navText {
+    opacity: 0.5;
+}
+
 .navItem {
     padding: 0.8rem;
     background-color: rgba(40, 44, 68, 0);
