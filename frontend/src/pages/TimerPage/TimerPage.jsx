@@ -4,10 +4,9 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { SkipBack, SkipForward, Play, Pause, RotateCcw } from 'lucide-react';
 import { Input } from '../../components/common/Input/Input'
 import { Button } from '../../components/common/Button/Button';
-import { playBeep } from '../../utils/audio';
+import { playBeep, unlockAudio } from '../../utils/audio';
 import Layout from '../../components/layout/Layout/Layout';
 import styles from './TimerPage.module.css'
-
 
 export default function Timer() {
     const [workDuration, setWorkDuration] = useState(30);
@@ -88,10 +87,13 @@ export default function Timer() {
 
                 <div className={styles.controls}>
                     <Button onClick={goBack}><SkipBack size={16} /></Button>
-                    <Button onClick={() => setIsPlaying(p => {
-                        if (!p) playBeep(audioCtxRef, phase)
-                        return !p
-                    })}>
+                    <Button onClick={async () => {
+                        await unlockAudio(audioCtxRef)
+                        setIsPlaying(p => {
+                            if (!p) playBeep(audioCtxRef, phase)
+                            return !p
+                        })
+                    }}>
                         {isPlaying ? <Pause size={16} /> : <Play size={16} />}
                     </Button>
                     <Button onClick={goForward}><SkipForward size={16} /></Button>

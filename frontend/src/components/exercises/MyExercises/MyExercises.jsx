@@ -1,6 +1,8 @@
 import { useModal } from '../../../hooks/useModal';
 import { useLocalExercises } from '../../../hooks/useLocalExercises';
 import { useExerciseFilters } from '../../../hooks/useExerciseFilters';
+import { useToast } from '../../../hooks/useToast';
+import { Toast } from '../../common/Toast/Toast';
 import { Button } from '../../common/Button/Button';
 import { Plus, LayersPlus, Trash2 } from 'lucide-react';
 import { Modal } from '../../common/Modal/Modal';
@@ -18,6 +20,8 @@ const MyExercises = ({ onSwitchToAll }) => {
   const detailsModal = useModal();
   const confirmModal = useModal();
   const editModal = useModal();
+  const { message, showToast } = useToast();
+
 
   function handleEditClick(exercise) {
     detailsModal.closeModal();
@@ -32,6 +36,7 @@ const MyExercises = ({ onSwitchToAll }) => {
   function handleConfirmDelete() {
     deleteExercise(confirmModal.modalData.id);
     confirmModal.closeModal();
+    showToast("Exercise deleted");
   }
 
   return (
@@ -67,7 +72,7 @@ const MyExercises = ({ onSwitchToAll }) => {
         </ul>
       )}
 
-      <CreateExerciseModal isOpen={createModal.isOpen} onClose={createModal.closeModal} onSave={createExercise} />
+      <CreateExerciseModal isOpen={createModal.isOpen} onClose={createModal.closeModal} onSave={(data) => { createExercise(data); showToast("Exercise created"); }} />
 
       <ExerciseDetailsModal
         isOpen={detailsModal.isOpen}
@@ -82,7 +87,7 @@ const MyExercises = ({ onSwitchToAll }) => {
         isOpen={editModal.isOpen}
         onClose={editModal.closeModal}
         initialData={editModal.modalData}
-        onSave={(data) => { updateExercise(editModal.modalData.id, data); editModal.closeModal(); }}
+        onSave={(data) => { updateExercise(editModal.modalData.id, data); editModal.closeModal(); showToast("Exercise updated"); }}
       />
 
       <Modal isOpen={confirmModal.isOpen} onClose={confirmModal.closeModal}>
@@ -94,6 +99,8 @@ const MyExercises = ({ onSwitchToAll }) => {
           <Button onClick={handleConfirmDelete} className={styles.btnDanger}><Trash2 size={16} />Delete</Button>
         </div>
       </Modal>
+
+      <Toast message={message} />
     </div>
   );
 };

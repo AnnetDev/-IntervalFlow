@@ -9,20 +9,36 @@ import styles from './CreateExerciseModal.module.css';
 export default function CreateExerciseModal({ isOpen, onClose, onSave, initialData }) {
   const isEditMode = !!initialData;
   const [form, setForm] = useState(initialData ?? INITIAL);
+  const [errors, setErrors] = useState({});
+
+  function validate() {
+    const errs = {};
+    if (!form.name.trim()) errs.name = 'Name is required';
+    if (form.duration && (Number(form.duration) < 1 || Number(form.duration) > 3600))
+      errs.duration = 'Duration must be between 1 and 3600 seconds';
+    return errs;
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
     const sanitized = name === 'duration' ? value.replace(/\D/g, '') : value;
     setForm(prev => ({ ...prev, [name]: sanitized }));
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: undefined }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
     onSave({
       ...form,
       duration: form.duration ? Number(form.duration) : null,
     });
     setForm(INITIAL);
+    setErrors({});
     onClose();
   }
 
@@ -38,9 +54,9 @@ export default function CreateExerciseModal({ isOpen, onClose, onSave, initialDa
             value={form.name}
             onChange={handleChange}
             placeholder="e.g. Jump Squats"
-            required
             maxLength={100}
           />
+          {errors.name && <span className={styles.error}>{errors.name}</span>}
         </label>
 
         <label className={styles.field}>
@@ -73,6 +89,7 @@ export default function CreateExerciseModal({ isOpen, onClose, onSave, initialDa
             inputMode="numeric"
             pattern="[0-9]*"
           />
+          {errors.duration && <span className={styles.error}>{errors.duration}</span>}
         </label>
 
         <label className={styles.field}>

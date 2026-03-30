@@ -1,9 +1,18 @@
-export function playBeep(audioCtxRef, type = 'work') {
+export async function unlockAudio(audioCtxRef) {
+  if (!audioCtxRef.current) {
+    audioCtxRef.current = new AudioContext()
+  }
+  if (audioCtxRef.current.state === 'suspended') {
+    await audioCtxRef.current.resume()
+  }
+}
+
+export async function playBeep(audioCtxRef, type = 'work') {
   if (!audioCtxRef.current) {
     audioCtxRef.current = new AudioContext()
   }
   const ctx = audioCtxRef.current
-  if (ctx.state === 'suspended') ctx.resume()
+  if (ctx.state === 'suspended') await ctx.resume()
 
   const osc = ctx.createOscillator()
   const gain = ctx.createGain()

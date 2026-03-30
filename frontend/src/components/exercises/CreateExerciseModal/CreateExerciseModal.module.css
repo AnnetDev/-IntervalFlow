@@ -48,6 +48,11 @@
   color: rgba(255, 255, 255, 0.25);
 }
 
+.error {
+  font-size: 0.75rem;
+  color: #f87171;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;

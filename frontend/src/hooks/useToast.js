@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useToast(duration = 4000) {
+export function useToast(duration = 5000) {
   const [message, setMessage] = useState('');
 
   function showToast(msg) {
