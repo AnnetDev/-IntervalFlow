@@ -1,19 +1,23 @@
-import { Button } from '../../common/Button/Button';
-import { Plus, LayersPlus, Trash2 } from 'lucide-react';
-import styles from './MyExercises.module.css';
 import { useModal } from '../../../hooks/useModal';
 import { useLocalExercises } from '../../../hooks/useLocalExercises';
+import { useExerciseFilters } from '../../../hooks/useExerciseFilters';
+import { Button } from '../../common/Button/Button';
+import { Plus, LayersPlus, Trash2 } from 'lucide-react';
 import { Modal } from '../../common/Modal/Modal';
+import { ExerciseFilters } from '../ExerciseFilters/ExerciseFilters';
 import CreateExerciseModal from '../CreateExerciseModal/CreateExerciseModal';
 import ExerciseCard from '../ExerciseCard/ExerciseCard';
 import ExerciseDetailsModal from '../ExerciseDetailsModal/ExerciseDetailsModal';
+import styles from './MyExercises.module.css';
 
 const MyExercises = ({ onSwitchToAll }) => {
+  const { exercises, createExercise, updateExercise, deleteExercise } = useLocalExercises();
+  const { filtered, selectOptions, handleClearFilters } = useExerciseFilters(exercises);
+
   const createModal = useModal();
   const detailsModal = useModal();
   const confirmModal = useModal();
   const editModal = useModal();
-  const { exercises, createExercise, updateExercise, deleteExercise } = useLocalExercises();
 
   function handleEditClick(exercise) {
     detailsModal.closeModal();
@@ -32,7 +36,12 @@ const MyExercises = ({ onSwitchToAll }) => {
 
   return (
     <div>
-      <h2>My Exercises</h2>
+      <h2 className='visuallyHidden'>My Exercises</h2>
+      <ExerciseFilters
+        selectOptions={selectOptions}
+        onClearFilters={handleClearFilters}
+        exerciseCount={exercises.length}
+      />
       <div className={styles.btnsWrapper}>
         <Button onClick={createModal.openModal}>
           <Plus size={14} /> Create new
@@ -46,13 +55,12 @@ const MyExercises = ({ onSwitchToAll }) => {
         <p>No exercises yet. Create one or add from Library.</p>
       ) : (
         <ul className={styles.exerciseList}>
-          {exercises.map(ex => (
+          {filtered.map(ex => (
             <li key={ex.id}>
               <ExerciseCard
                 exercise={{ ...ex, createdBy: 'local' }}
                 onViewDetails={() => detailsModal.openModal(ex)}
                 onDelete={() => handleDeleteClick(ex)}
-
               />
             </li>
           ))}

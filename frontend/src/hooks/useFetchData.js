@@ -5,10 +5,11 @@ const API_BASE_URL = 'https://intervalflow-api.onrender.com/api';
 export function useFetchData(filters = {}) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
+      setError(null);
       try {
         const params = new URLSearchParams();
 
@@ -28,16 +29,16 @@ export function useFetchData(filters = {}) {
         const result = await response.json();
         setData(result.data);
 
-      } catch (error) {
-        console.error('Error fetching exercises:', error);
-        throw error;
+      } catch (err) {
+        console.error('Error fetching exercises:', err);
+        setError('Failed to load exercises. Please try again later.');
       } finally {
         setIsLoading(false);
       }
     }
     fetchData();
   }, [filters.difficulty, filters.muscleGroup, filters.equipment]);
-  return { data, isLoading }
+  return { data, isLoading, error }
 }
 
 export function useGetExerciseById(id) {

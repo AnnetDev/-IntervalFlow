@@ -46,6 +46,7 @@ export default function CreateExerciseModal({ isOpen, onClose, onSave, initialDa
         <label className={styles.field}>
           <span className={styles.label}>Difficulty</span>
           <Select
+            name="difficulty"
             options={DIFFICULTY_OPTIONS}
             value={form.difficulty}
             onChange={(e) => setForm(prev => ({ ...prev, difficulty: e.target.value }))}
@@ -55,6 +56,7 @@ export default function CreateExerciseModal({ isOpen, onClose, onSave, initialDa
         <label className={styles.field}>
           <span className={styles.label}>Muscle Group</span>
           <Select
+            name="muscleGroup"
             options={MUSCLE_OPTIONS}
             value={form.muscleGroup}
             onChange={(e) => setForm(prev => ({ ...prev, muscleGroup: e.target.value }))}

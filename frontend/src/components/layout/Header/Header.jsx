@@ -1,33 +1,50 @@
-// import IntervalFlowLogo from '../../common/IntervalFlowLogo/IntervalFlowLogo';
+import { useState, useRef, useEffect } from 'react';
 import RunnerIcon from '../../common/IntervalFlowLogo/RunnerIcon';
 import styles from './Header.module.css';
-// import { Github, Linkedin } from 'lucide-react';
-// import { Link } from 'react-router-dom';
-// import { Info } from 'lucide-react';
-
-
-// const links = [
-//   { name: 'GitHub', icon: <Github />, url: 'https://github.com/AnnetDev' },
-//   { name: 'LinkedIn', icon: <Linkedin />, url: 'https://www.linkedin.com/in/anna-baidikova/' }
-// ]
+import { Link } from 'react-router-dom';
+import { Info, AppWindow, User } from 'lucide-react';
 
 const Header = () => {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
   return (
     <header className={styles.header}>
       <div className={styles.headerIcon}>
-        <RunnerIcon />
-        Interval Flow
+        <Link to="/exercises">
+          <RunnerIcon />
+          Interval Flow
+        </Link>
+
       </div>
 
-      <div className={styles.info}>
-        {/* <p className={styles.buildLabel}>Built by</p> */}
-        {/* {links.map((item) => {
-          return (
-            <Link to={item.url} target="_blank" className={styles.link} key={item.name}>
-              {item.icon}
+      <div className={styles.info} ref={ref}>
+        <button className={styles.infoBtn} onClick={() => setOpen(p => !p)}>
+          <Info size={26} />
+        </button>
+
+        {open && (
+          <div className={styles.dropdown}>
+            <Link to="/about" className={styles.dropdownItem} onClick={() => setOpen(false)}>
+              <AppWindow size={16} />
+              About app
             </Link>
-          )
-        })} */}
+            <Link to="/author" className={styles.dropdownItem} onClick={() => setOpen(false)}>
+              <User size={16} />
+              About author
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );
