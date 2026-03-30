@@ -37,21 +37,26 @@ export function Navigation() {
                 <ul className={styles.navList}>
                     {navItems.map((item) => (
                         <li className={styles.navItem} key={item.path}>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    item.disabled ? styles.navLinkDisabled : isActive ? styles.navLinkActive : styles.navLink
-                                }
-                                to={item.disabled ? '#' : item.path}
-                                onClick={item.disabled ? (e) => e.preventDefault() : undefined}
-                                aria-disabled={item.disabled}
-                            >
-                                <div className={styles.iconWrapper}>
-                                    {item.icon}
-                                    <span className={styles.navText}>
-                                        {item.name}
-                                    </span>
-                                </div>
-                            </NavLink>
+                            {item.disabled ? (
+                                <span className={styles.navLinkDisabled} aria-disabled="true">
+                                    <div className={styles.iconWrapper}>
+                                        {item.icon}
+                                        <span className={styles.navText}>{item.name}</span>
+                                    </div>
+                                </span>
+                            ) : (
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive ? styles.navLinkActive : styles.navLink
+                                    }
+                                    to={item.path}
+                                >
+                                    <div className={styles.iconWrapper}>
+                                        {item.icon}
+                                        <span className={styles.navText}>{item.name}</span>
+                                    </div>
+                                </NavLink>
+                            )}
                         </li>
                     ))}
                 </ul>
