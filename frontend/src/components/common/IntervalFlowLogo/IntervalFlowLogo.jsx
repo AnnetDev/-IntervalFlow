@@ -1,21 +1,24 @@
-import TimerIcon from './TimerIcon';
-import LogoLine from './LogoLine';
+import RunnerIcon from './RunnerIcon';
 import styles from './IntervalFlowLogo.module.css';
 
 export default function IntervalFlowLogo() {
     return (
         <div className={styles.logo}>
             <div className={styles.animItem} style={{ animationDelay: '0s' }}>
-                <TimerIcon />
+                <RunnerIcon />
             </div>
             <div className={styles.logotextContainer}>
                 <p
                     className={`${styles.logotext} ${styles.animItem}`}
                     style={{ animationDelay: '0.5s' }}
                 >
-                    Interval
+                    Interval Flow
                 </p>
-                <div
+                <div className={`${styles.LogoLine} ${styles.animItem}`}
+                    style={{ animationDelay: '1.2s' }}></div>
+                <p className={`${styles.logotextDescription} ${styles.animItem}`}
+                    style={{ animationDelay: '0.9s' }}>Interval Trainings</p>
+                {/* <div
                     className={styles.animItem}
                     style={{ animationDelay: '1.2s' }}
                 >
@@ -26,7 +29,7 @@ export default function IntervalFlowLogo() {
                     style={{ animationDelay: '0.5s' }}
                 >
                     Flow
-                </p>
+                </p> */}
             </div>
         </div>
     );
