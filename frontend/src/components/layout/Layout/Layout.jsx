@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
         <div
             style={{
                 background,
-                height: '100vh',
+                height: '100dvh',
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden',
@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
             className={styles.layout}
         >
             <Header />
-            <main>{children}</main>
+            <main style={{ flex: 1, overflow: 'auto' }}>{children}</main>
             <Footer />
         </div>
     );
