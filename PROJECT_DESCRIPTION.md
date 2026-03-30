@@ -4,27 +4,76 @@ IntervalFlow is a Tabata/HIIT/interval training app that combines exercise selec
 
 ---
 
-## Current Implementation (This Submission)
+## Current Frontend Implementation
+
+**The frontend is a React SPA deployed on Vercel, focused on exercise management and interval timer functionality.**
+
+### Implemented Features:
+
+#### ✅ Exercise Library (All Exercises Tab)
+
+- Browse ~60 pre-populated exercises fetched from the backend API
+- Filter by difficulty, muscle group, and equipment — filters built dynamically from actual data
+- View full exercise details in a modal (description, params, difficulty badge)
+- Add any exercise to personal "My Exercises" collection (stored locally)
+
+#### ✅ My Exercises (Personal Collection)
+
+- Create custom exercises with a validated form (name required, duration range check)
+- Edit and delete personal exercises
+- Filter personal exercises using the same filter UI
+- All data persisted in `localStorage` — no account required
+- User feedback via toast notifications on create, update, and delete
+
+#### ✅ Architecture & Code Quality
+
+- Logic separated from UI via custom hooks: `useTimer`, `useLocalExercises`, `useExerciseFilters`, `useFetchData`, `useModal`, `useToast`
+- Shared `ExerciseFilters` component reused across both exercise tabs
+- CSS Modules for scoped styling; global glass-morphism utility class
+- Responsive layout with mobile-first approach (`100dvh`, sticky navigation footer)
+- No-account-needed profile page with local storage explanation
+
+#### ✅ Interval Timer
+
+- Configurable settings: exercise duration, rest duration, exercises per round, number of rounds
+- Fixed 60-second round rest between rounds
+- Visual countdown using animated circular timer (`react-countdown-circle-timer`)
+- Phase-aware colors: warm gradient for Work, cool gradient for Rest
+- Audio cues at phase transitions and 3–2–1 countdown beeps (Web Audio API)
+- Controls: Play/Pause, Skip Forward, Skip Back, Reset
+- Round and exercise progress displayed (e.g. Round 2/4 · Exercise 3/8)
+
+#### ✅ Deployment
+
+- Live URL: [interval-flow.vercel.app](https://interval-flow.vercel.app)
+- SPA routing handled via `vercel.json` rewrites
+- Connects to backend API deployed on Render
+
+---
+
+## Current Backend Implementation
 
 **This submission contains the MVP backend API focused on exercise management.**
 
 ### Implemented Features:
 
 #### ✅ Exercise Management API
+
 - **Public endpoints** (no authentication required):
   - `GET /api/exercises` - Browse all exercises with filtering (difficulty, muscle group, equipment)
   - `GET /api/exercises/:id` - Get a single exercise
-  
 - **Protected endpoints** (require JWT authentication):
   - `POST /api/exercises` - Create custom exercises
   - `PUT /api/exercises/:id` - Update exercises
   - `DELETE /api/exercises/:id` - Delete exercises
 
 #### ✅ User Authentication
+
 - `POST /api/auth/register` - User registration with bcrypt password hashing
 - `POST /api/auth/login` - User login with JWT token generation
 
 #### ✅ Security Features
+
 - Password hashing with bcrypt (10 rounds)
 - JWT-based authentication with 7-day token expiration
 - Rate limiting:
@@ -34,11 +83,13 @@ IntervalFlow is a Tabata/HIIT/interval training app that combines exercise selec
 - Protection against NoSQL injection
 
 #### ✅ Database
+
 - ~60 pre-populated exercises with metadata (difficulty, muscle group, equipment, etc.)
 - MongoDB with Mongoose ODM
 - Seed scripts for easy database setup
 
 #### ✅ Documentation
+
 - Interactive API documentation (Scalar) at `/api-docs`
 - Comprehensive README.md and API_DOCUMENTATION.md
 - OpenAPI 3.0 specification
@@ -48,12 +99,14 @@ IntervalFlow is a Tabata/HIIT/interval training app that combines exercise selec
 ## Exercise Visibility and Access Control
 
 ### For Unauthenticated Users:
+
 - ✅ Can **view** all public exercises (seed exercises)
 - ✅ Can **create** custom exercises via API
 - ❌ Custom exercises are **NOT saved** to the database (would be stored locally in future frontend implementation)
 - ❌ Cannot access exercises from other devices
 
 ### For Authenticated Users:
+
 - ✅ Can **view** all public exercises (seed exercises)
 - ✅ Can **create** custom exercises that are saved to the database
 - ✅ Custom exercises are **private** (linked to user via `createdBy` field)
@@ -62,6 +115,7 @@ IntervalFlow is a Tabata/HIIT/interval training app that combines exercise selec
 - ❌ Cannot modify or delete public seed exercises
 
 ### Future: Admin/Trainer Role (Planned)
+
 - Will be able to add exercises to the **public library**
 - Exercises will undergo content moderation/validation before being added
 - Prevents inappropriate, harmful, or low-quality content from entering the public database
@@ -75,16 +129,19 @@ IntervalFlow is a Tabata/HIIT/interval training app that combines exercise selec
 The following features are **planned for future iterations** and are not included in this submission:
 
 ### 🔄 Workout Management API
+
 - Create, read, update, delete workout programs
 - Structure workouts as collections of rounds with exercises
 - Save and retrieve personalized Tabata/HIIT workouts
 
 ### 🔄 Tabata Timer Integration
-- Frontend timer component
+
+- Frontend timer component - done
 - Support for customizable work/rest intervals
 - Visual and audio cues for interval transitions
 
 ### 🔄 Enhanced Exercise Management
+
 - **TODO:** Add unique name validation for exercises (prevent duplicate names)
 - **TODO:** ? Exercise image uploads
 - **TODO:** ? Exercise video demonstrations
@@ -93,7 +150,9 @@ The following features are **planned for future iterations** and are not include
 ### 🔄 User Flows
 
 #### Flow 1: Local-Only (No Login Required)
+
 Users can:
+
 1. Browse and filter exercises
 2. Create workouts using the Tabata timer
 3. Save workouts locally (browser localStorage)
@@ -103,7 +162,9 @@ Users can:
 **Storage:** All data stored on the device (localStorage/IndexedDB)
 
 #### Flow 2: Cloud-Sync (With Account)
+
 Same functionality as Flow 1, plus:
+
 - Registration and login
 - Access workouts from any device
 - Custom exercises synced across devices
@@ -112,24 +173,26 @@ Same functionality as Flow 1, plus:
 **Storage:** All data stored in MongoDB database
 
 ### 🔄 Deployment
-- **TODO:** Deploy database to MongoDB Atlas (cloud)
+
+- **TODO:** Deploy database to MongoDB Atlas (cloud) - done
 - **TODO:** Deploy API to cloud hosting (Heroku, Railway, or similar)
 - **TODO:** Deploy frontend with React.js
 
 ---
 
-## Timer Specification (Future Frontend)
+## Timer Specification Exemple (Frontend)
 
-* One round contains **8 exercises** (30 seconds each) and **8 rest intervals** (10 seconds each).
-* Between rounds there is a **1-minute break**.
-* An average workout has **5–6 rounds**.
-* Each round contains different exercises. Rounds are usually different, but sometimes a round can repeat.
+- One round contains **8 exercises** (30 seconds each) and **8 rest intervals** (10 seconds each).
+- Between rounds there is a **1-minute break**.
+- An average workout has **5–6 rounds**.
+- Each round contains different exercises. Rounds are usually different, but sometimes a round can repeat.
 
 ---
 
 ## Tech Stack
 
 ### Current Implementation:
+
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB with Mongoose ODM
 - **Authentication:** JWT (jsonwebtoken), bcrypt
@@ -138,9 +201,9 @@ Same functionality as Flow 1, plus:
 - **Tools:** MongoDB Compass, Postman/Yaak
 
 ### Planned Additions:
-- **Frontend:** React.js, JSX
+
+- **Frontend:** continue with React.js, JSX
 - **State Management:** React Context API or Redux (TBD)
-- **Timer UI:** Custom React component
 - **Deployment:** MongoDB Atlas, Heroku/Railway, Netlify/Vercel
 
 ---
@@ -150,6 +213,7 @@ Same functionality as Flow 1, plus:
 ### ✅ Threat 1: Credential Attacks and Password Leakage (AUTH)
 
 **Implemented Mitigation:**
+
 1. **Bcrypt password hashing** with salt (10 rounds) - passwords never stored in plain text
 2. **Rate limiting** on auth endpoints:
    - Login: 5 attempts per 15 minutes per IP
@@ -163,6 +227,7 @@ Same functionality as Flow 1, plus:
 ### ✅ Threat 2: NoSQL Injection
 
 **Implemented Mitigation:**
+
 1. **Mongoose schema validation** - enforces expected field types and formats
 2. **Allowlisted query parameters** - only `difficulty`, `muscleGroup`, `equipment` accepted
 3. **Safe query construction** - user input sanitized before database queries
@@ -171,19 +236,23 @@ Same functionality as Flow 1, plus:
 ### 🔄 Threat 3: Data Loss and Availability (Backups)
 
 **Planned for Production:**
+
 1. **Automated scheduled backups** using `mongodump`
 2. **Backup storage** in separate location (cloud storage bucket)
 3. **Rotating backups** (daily for 7 days, weekly for 4 weeks)
 4. **Tested restore procedures** using `mongorestore`
 
 **Current Development Setup:**
+
 - Seed scripts (`npm run seed`) for quick database recreation
 - Local MongoDB instance with manual backups as needed
 
 ---
+
 ## API Documentation
 
 ### Interactive Documentation (Scalar)
+
 - **URL:** `http://localhost:3000/api-docs`
 - Test endpoints directly in browser
 - Built-in authentication support
@@ -191,18 +260,21 @@ Same functionality as Flow 1, plus:
 - Beautiful, searchable interface
 
 ### Written Documentation
+
 - **README.md** - Setup, installation, quick start
 - **API_DOCUMENTATION.md** - Complete endpoint reference, examples, testing guide
 
 ## Future Improvements & TODO
 
 ### High Priority:
-- [ ] Implement Workout model and CRUD endpoints
+
+- [ ] Implement Workout model and CRUD endpoints ✅
 - [ ] Add unique name validation for exercises
-- [ ] Deploy to production (MongoDB Atlas + cloud hosting)
-- [ ] Build React frontend with Tabata timer
+- [ ] Deploy to production (MongoDB Atlas + cloud hosting) ✅
+- [ ] Build React frontend with Tabata timer ✅
 
 ### Medium Priority:
+
 - [ ] Admin/Trainer role management
 - [ ] Exercise content moderation system
 - [ ] Exercise images and video demonstrations
@@ -210,6 +282,7 @@ Same functionality as Flow 1, plus:
 - [ ] Social features (share workouts)
 
 ### Low Priority:
+
 - [ ] Advanced filtering (calories, intensity)
 - [ ] Workout recommendations based on user level
 - [ ] Progress tracking and analytics
@@ -222,4 +295,4 @@ The foundation is built for future expansion into a complete Tabata/HIIT trainin
 ---
 
 **Author:** Anna Baidikova  
-**Date:** February 2026
+**Date:** March 2026
