@@ -18,18 +18,6 @@ export default function IntervalFlowLogo() {
                     style={{ animationDelay: '1.2s' }}></div>
                 <p className={`${styles.logotextDescription} ${styles.animItem}`}
                     style={{ animationDelay: '0.9s' }}>Interval Trainings</p>
-                {/* <div
-                    className={styles.animItem}
-                    style={{ animationDelay: '1.2s' }}
-                >
-                    <LogoLine />
-                </div>
-                <p
-                    className={`${styles.logotext} ${styles.animItem}`}
-                    style={{ animationDelay: '0.5s' }}
-                >
-                    Flow
-                </p> */}
             </div>
         </div>
     );

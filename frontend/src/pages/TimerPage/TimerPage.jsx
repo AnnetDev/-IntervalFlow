@@ -1,12 +1,12 @@
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { useState } from 'react';
+import { useTimer } from '../../hooks/useTimer';
+import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { SkipBack, SkipForward, Play, Pause, RotateCcw } from 'lucide-react';
 import { Input } from '../../components/common/Input/Input'
 import { Button } from '../../components/common/Button/Button';
+import { playBeep } from '../../utils/audio';
 import Layout from '../../components/layout/Layout/Layout';
 import styles from './TimerPage.module.css'
-import { playBeep } from '../../utils/audio';
-import { useTimer } from '../../hooks/useTimer';
 
 
 export default function Timer() {
@@ -14,7 +14,7 @@ export default function Timer() {
     const [restDuration, setRestDuration] = useState(10);
     const [exercisesPerRound, setExercisesPerRound] = useState(5);
     const [rounds, setRounds] = useState(3);
-    const [roundRestDuration] = useState(60);
+    const roundRestDuration = 60;
 
     const {
         isPlaying, setIsPlaying,

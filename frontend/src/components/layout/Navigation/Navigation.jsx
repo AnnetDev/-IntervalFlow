@@ -41,7 +41,9 @@ export function Navigation() {
                                 className={({ isActive }) =>
                                     item.disabled ? styles.navLinkDisabled : isActive ? styles.navLinkActive : styles.navLink
                                 }
-                                to={item.path}
+                                to={item.disabled ? '#' : item.path}
+                                onClick={item.disabled ? (e) => e.preventDefault() : undefined}
+                                aria-disabled={item.disabled}
                             >
                                 <div className={styles.iconWrapper}>
                                     {item.icon}

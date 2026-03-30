@@ -14,14 +14,6 @@
     z-index: 2;
 }
 
-/* @media (min-width: 768px) {
-    .tabs {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-    }
-} */
-
 .tab {
     composes: glass from global;
     position: relative;
