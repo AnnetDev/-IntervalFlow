@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-const API_BASE_URL = 'https://intervalflow-api.onrender.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 
 export function useFetchData(filters = {}) {

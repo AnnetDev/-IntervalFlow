@@ -26,7 +26,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 // Middleware
-app.use(cors()); // Enable calls from frontend 
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 app.use(apiLimiter); // Apply rate limiting to all API routes

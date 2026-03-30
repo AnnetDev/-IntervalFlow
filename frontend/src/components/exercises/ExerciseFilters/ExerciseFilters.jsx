@@ -31,6 +31,7 @@ export function ExerciseFilters({ selectOptions, onClearFilters, exerciseCount, 
                   <h4>{option.name}</h4>
                 </div>
                 <Select
+                  name={option.name}
                   options={option.options}
                   value={option.value}
                   onChange={(e) => option.onChange(e.target.value)}
