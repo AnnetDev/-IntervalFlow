@@ -25,7 +25,6 @@
     padding: 0.6rem 1.25rem;
     cursor: pointer;
     transition: color 0.2s;
-    /* border-radius: 14px; */
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
 }

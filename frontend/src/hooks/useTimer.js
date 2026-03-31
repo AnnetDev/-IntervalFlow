@@ -51,12 +51,11 @@ export function useTimer({ exercisesPerRound, rounds }) {
       setPhase('rest')
     } else {
       if (currentExercise === 1 && currentRound === 1) {
-        // самое первое — перезапустить
+        // 
       } else if (currentExercise > 1) {
         setCurrentExercise(e => e - 1)
         setPhase('rest')
       } else {
-        // первое упр. раунда — назад к roundRest
         setCurrentRound(r => r - 1)
         setPhase('roundRest')
       }
