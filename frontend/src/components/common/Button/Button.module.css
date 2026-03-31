@@ -46,15 +46,16 @@
     background: none;
     border: none;
     border-radius: 50%;
-    max-width: fit-content;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.7);
     transition:
         color 0.2s,
         box-shadow 0.2s;
-    position: fixed;
-    bottom: 7rem;
-    right: 1.5rem;
+    /* max-width: fit-content; */
+    position: sticky;
+    bottom: 3rem;
+    margin-left: auto;
+    margin-right: 1rem;
     z-index: 10;
 }
 

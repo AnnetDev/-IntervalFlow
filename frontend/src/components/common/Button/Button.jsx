@@ -27,7 +27,7 @@ export function ScrollToTopBtn({ scrollContainerRef }) {
 
   return <>
     <button className={styles.scrollBtn} onClick={() => scrollContainerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Scroll to top">
-      <CircleArrowUp size={35} />
+      <CircleArrowUp size={40} />
     </button>
   </>
 }

@@ -39,6 +39,7 @@ main {
     margin: 0.5rem auto 0 auto;
     overflow-y: auto;
     min-height: 0;
+    position: relative;
 }
 
 /*  Glass effect   */
