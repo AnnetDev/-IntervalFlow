@@ -7,13 +7,9 @@ const AuthorPage = () => {
     return (
         <Layout>
             <div className={styles.container}>
-
                 <img src={avatarUrl} alt="Anna Baidikova" className={styles.avatar} />
-
-
                 <h1 className={styles.name}>Anna Baidikova</h1>
                 <p className={styles.role}>Fullstack Developer</p>
-
                 <div className={styles.links}>
                     <a
                         href="https://github.com/AnnetDev"
