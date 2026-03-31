@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { ChartNoAxesColumnIncreasing, BicepsFlexed, ListChecks } from 'lucide-react'
 
 export function useExerciseFilters(exercises = []) {
@@ -11,20 +11,20 @@ export function useExerciseFilters(exercises = []) {
         return [{ value: '', label: 'Show all' }, ...unique.map(v => ({ value: v, label: v }))]
     }
 
-    const selectOptions = [
+    const selectOptions = useMemo(() => [
         { name: 'Difficulty', options: getSelectOptions('difficulty'), value: difficulty, onChange: setDifficulty, icon: <ChartNoAxesColumnIncreasing size={12} /> },
         { name: 'Muscle Group', options: getSelectOptions('muscleGroup'), value: muscleGroup, onChange: setMuscleGroup, icon: <BicepsFlexed size={12} /> },
         { name: 'Equipment', options: getSelectOptions('equipment'), value: equipment, onChange: setEquipment, icon: <ListChecks size={12} /> },
-    ]
+    ], [exercises, difficulty, muscleGroup, equipment])
 
     const filters = { difficulty, muscleGroup, equipment }
 
-    const filtered = exercises.filter(ex => {
+    const filtered = useMemo(() => exercises.filter(ex => {
         if (difficulty && ex.difficulty !== difficulty) return false
         if (muscleGroup && ex.muscleGroup !== muscleGroup) return false
         if (equipment && ex.equipment !== equipment) return false
         return true
-    })
+    }), [exercises, difficulty, muscleGroup, equipment])
 
     function handleClearFilters() {
         setDifficulty('')
