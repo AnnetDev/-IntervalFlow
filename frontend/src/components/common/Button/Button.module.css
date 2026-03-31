@@ -48,9 +48,7 @@
     border-radius: 50%;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.7);
-    transition:
-        color 0.2s,
-        box-shadow 0.2s;
+    transition: opacity 0.2s ease;
     /* max-width: fit-content; */
     position: sticky;
     bottom: 3rem;
@@ -60,6 +58,5 @@
 }
 
 .scrollBtn:hover {
-    color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 14px rgba(255, 255, 255, 0.1);
+    opacity: 0.5;
 }
