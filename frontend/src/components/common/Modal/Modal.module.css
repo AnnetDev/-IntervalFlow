@@ -51,8 +51,8 @@
 }
 
 .modalContainer {
-    composes: glass from global;
-    background: rgba(16, 16, 37, 1);
+    /* composes: glass from global; */
+    background: rgba(16, 16, 37, 0.8);
     padding: 2rem 1.5rem 1.5rem;
     min-width: 85%;
     max-width: 500px;
