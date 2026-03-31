@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getRandomBackground } from '../../../utils/randomBackground';
 import { backgrounds } from '../../../utils/backgrounds';
+import { ScrollToTopBtn } from '../../common/Button/Button';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import styles from './Layout.module.css';
@@ -14,6 +15,7 @@ const Layout = ({ children }) => {
     const location = useLocation();
     const prevBackgroundRef = useRef(null);
     const isFirstRender = useRef(true);
+    const mainRef = useRef(null);
 
     useEffect(() => {
         if (isFirstRender.current) {
@@ -40,7 +42,10 @@ const Layout = ({ children }) => {
             className={styles.layout}
         >
             <Header />
-            <main style={{ flex: 1, overflow: 'auto' }}>{children}</main>
+            <main ref={mainRef} style={{ flex: 1, overflow: 'auto' }}>{children}
+                <ScrollToTopBtn scrollContainerRef={mainRef} />
+            </main>
+
             <Footer />
         </div>
     );

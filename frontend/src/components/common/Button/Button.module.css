@@ -39,3 +39,26 @@
     background: rgba(220, 60, 60, 0.35);
     box-shadow: 0 0 14px rgba(220, 60, 60, 0.2);
 }
+
+.scrollBtn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    max-width: fit-content;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    transition:
+        color 0.2s,
+        box-shadow 0.2s;
+    position: fixed;
+    bottom: 7rem;
+    right: 1.5rem;
+    z-index: 10;
+}
+
+.scrollBtn:hover {
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.1);
+}
