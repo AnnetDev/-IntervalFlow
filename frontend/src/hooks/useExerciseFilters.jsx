@@ -6,16 +6,17 @@ export function useExerciseFilters(exercises = []) {
     const [muscleGroup, setMuscleGroup] = useState('')
     const [equipment, setEquipment] = useState('')
 
-    function getSelectOptions(field) {
-        const unique = [...new Set(exercises.map(ex => ex[field]).filter(Boolean))]
-        return [{ value: '', label: 'Show all' }, ...unique.map(v => ({ value: v, label: v }))]
-    }
-
-    const selectOptions = useMemo(() => [
-        { name: 'Difficulty', options: getSelectOptions('difficulty'), value: difficulty, onChange: setDifficulty, icon: <ChartNoAxesColumnIncreasing size={12} /> },
-        { name: 'Muscle Group', options: getSelectOptions('muscleGroup'), value: muscleGroup, onChange: setMuscleGroup, icon: <BicepsFlexed size={12} /> },
-        { name: 'Equipment', options: getSelectOptions('equipment'), value: equipment, onChange: setEquipment, icon: <ListChecks size={12} /> },
-    ], [exercises, difficulty, muscleGroup, equipment])
+    const selectOptions = useMemo(() => {
+        function getOptions(field) {
+            const unique = [...new Set(exercises.map(ex => ex[field]).filter(Boolean))]
+            return [{ value: '', label: 'Show all' }, ...unique.map(v => ({ value: v, label: v }))]
+        }
+        return [
+            { name: 'Difficulty', options: getOptions('difficulty'), value: difficulty, onChange: setDifficulty, icon: <ChartNoAxesColumnIncreasing size={12} /> },
+            { name: 'Muscle Group', options: getOptions('muscleGroup'), value: muscleGroup, onChange: setMuscleGroup, icon: <BicepsFlexed size={12} /> },
+            { name: 'Equipment', options: getOptions('equipment'), value: equipment, onChange: setEquipment, icon: <ListChecks size={12} /> },
+        ]
+    }, [exercises, difficulty, muscleGroup, equipment])
 
     const filters = { difficulty, muscleGroup, equipment }
 
