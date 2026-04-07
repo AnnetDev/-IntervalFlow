@@ -30,6 +30,9 @@ const Layout = ({ children }) => {
         setBackground(newBackground.css);
     }, [location]);
 
+    {
+        /* Inline styles duplicate what should be in the CSS module — only `background` needs to be inline */
+    }
     return (
         <div
             style={{
@@ -42,7 +45,8 @@ const Layout = ({ children }) => {
             className={styles.layout}
         >
             <Header />
-            <main ref={mainRef} style={{ flex: 1, overflow: 'auto' }}>{children}
+            <main ref={mainRef} style={{ flex: 1, overflow: 'auto' }}>
+                {children}
                 <ScrollToTopBtn scrollContainerRef={mainRef} />
             </main>
 

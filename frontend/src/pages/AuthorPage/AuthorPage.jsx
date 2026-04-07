@@ -3,11 +3,17 @@ import Layout from '../../components/layout/Layout/Layout';
 import styles from './AuthorPage.module.css';
 import avatarUrl from '../../assets/authorimg.jpg';
 
+// Extract links into a data array to reduce repetition
+
 const AuthorPage = () => {
     return (
         <Layout>
             <div className={styles.container}>
-                <img src={avatarUrl} alt="Anna Baidikova" className={styles.avatar} />
+                <img
+                    src={avatarUrl}
+                    alt="Anna Baidikova"
+                    className={styles.avatar}
+                />
                 <h1 className={styles.name}>Anna Baidikova</h1>
                 <p className={styles.role}>Fullstack Developer</p>
                 <div className={styles.links}>
