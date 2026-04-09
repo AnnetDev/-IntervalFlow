@@ -1,3 +1,9 @@
+// All entries share the same angle, base color, and stop positions — only mid/end colors differ.
+// Could reduce repetition by storing just the color values and generating the CSS strings, e.g.:
+//   const BASE = 'rgba(16, 16, 37, 1)';
+//   gradientColors.map(({ name, mid, end }) => ({
+//     name, css: `linear-gradient(176deg, ${BASE} 27%, rgba(${mid}, 1) 58%, rgba(${end}, 1) 100%)`
+//   }));
 export const backgrounds = [
     { name: 'mauve', css: 'linear-gradient(176deg, rgba(16, 16, 37, 1) 27%, rgba(63, 35, 66, 1) 58%, rgba(174, 87, 186, 1) 100%)' },
     { name: 'indigo', css: 'linear-gradient(176deg, rgba(16, 16, 37, 1) 27%, rgba(28, 28, 85, 1) 58%, rgba(95, 105, 225, 1) 100%)' },

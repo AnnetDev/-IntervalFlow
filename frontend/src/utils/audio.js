@@ -1,3 +1,4 @@
+// AudioContext init is duplicated between unlockAudio and playBeep — extract a shared helper
 export async function unlockAudio(audioCtxRef) {
   if (!audioCtxRef.current) {
     audioCtxRef.current = new AudioContext()
@@ -7,6 +8,9 @@ export async function unlockAudio(audioCtxRef) {
   }
 }
 
+// Called fire-and-forget (no await) in useTimer — errors from resume() will be unhandled rejections.
+// Fix: either wrap body in try/catch, or drop async/await entirely (unlockAudio already resumes the
+// context before playBeep is called, and callers never await the result).
 export async function playBeep(audioCtxRef, type = 'work') {
   if (!audioCtxRef.current) {
     audioCtxRef.current = new AudioContext()
@@ -19,6 +23,7 @@ export async function playBeep(audioCtxRef, type = 'work') {
   osc.connect(gain)
   gain.connect(ctx.destination)
 
+  // Magic numbers: 880 = A5, 440 = A4, 330 = E4 — consider a frequency map for readability
   if (type === 'work') {
     osc.frequency.value = 880
   } else if (type === 'rest') {
@@ -31,4 +36,5 @@ export async function playBeep(audioCtxRef, type = 'work') {
   gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4)
   osc.start(ctx.currentTime)
   osc.stop(ctx.currentTime + 0.4)
+  // Nodes stay connected after stop — add osc.onended = () => { osc.disconnect(); gain.disconnect(); }
 }

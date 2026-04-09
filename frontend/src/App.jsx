@@ -1,3 +1,6 @@
+// Inconsistent export style across the codebase: pages and layout components use default exports,
+// while common components (Button, Modal, Toast, Select, Input, Loader) and hooks use named exports.
+// Pick one convention — named exports are generally preferred (better refactoring, no rename-on-import).
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
@@ -10,7 +13,9 @@ import AuthorPage from './pages/AuthorPage/AuthorPage';
 function App() {
     return (
         <>
+            {/* Fragments are reduntant <BrowserRouter> is already a single root element */}
             <BrowserRouter>
+                {/* No catch-all 404 route — unknown paths render a blank Layout */}
                 <Routes>
                     <Route path="/" element={<SplashPage />} />
                     <Route path="/exercises" element={<ExercisesPage />} />

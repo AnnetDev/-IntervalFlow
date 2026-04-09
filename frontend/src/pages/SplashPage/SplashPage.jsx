@@ -6,6 +6,8 @@ import IntervalFlowLogo from '../../components/common/IntervalFlowLogo/IntervalF
 export default function SplashPage() {
     const navigate = useNavigate();
 
+    // Array wrapper is unnecessary for a single timer — simplify to a plain variable.
+    // Also consider a skip mechanism (click/keypress) or localStorage flag to bypass on repeat visits.
     useEffect(() => {
         const timers = [
             setTimeout(() => navigate('/exercises', { replace: true }), 4000),

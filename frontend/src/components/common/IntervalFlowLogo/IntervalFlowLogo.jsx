@@ -14,6 +14,7 @@ export default function IntervalFlowLogo() {
                 >
                     Interval Flow
                 </p>
+                {/* Inconsistent casing: LogoLine vs logotext/logotextDescription */}
                 <div className={`${styles.LogoLine} ${styles.animItem}`}
                     style={{ animationDelay: '1.2s' }}></div>
                 <p className={`${styles.logotextDescription} ${styles.animItem}`}

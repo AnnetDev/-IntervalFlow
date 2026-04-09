@@ -11,6 +11,7 @@ const ExercisesPage = () => {
         <Layout>
             <div className={styles.exercisesPage}>
                 <h1 className='visuallyHidden'>Exercises Page</h1>
+                {/* Consider adding role="tablist" and role="tab" + aria-selected to improve accessibility */}
                 <div className={styles.tabs}>
                     <button
                         className={`${styles.tab} ${activeTab === 'my' ? styles.tabActive : ''}`}
@@ -26,6 +27,8 @@ const ExercisesPage = () => {
                     </button>
                 </div>
 
+                {/* Switching tabs unmounts the inactive component, resetting scroll, filters, and re-fetching data.
+                   To preserve state, render both and hide the inactive one with CSS (display: none). */}
                 {activeTab === 'all' ? <AllExercises /> : <MyExercises onSwitchToAll={() => setActiveTab('all')} />}
             </div>
         </Layout>

@@ -15,6 +15,8 @@ const ProfilePage = () => {
                     Start using IntervalFlow right away — no sign-up required.
                 </p>
 
+                {/* Feature list duplicates AboutPage pattern — consider a shared FeatureList component.
+                   Also, a <ul>/<li> structure would be more semantic than <div>s here. */}
                 <div className={styles.features}>
                     <div className={styles.feature}>
                         <Smartphone size={20} />
@@ -22,7 +24,9 @@ const ProfilePage = () => {
                     </div>
                     <div className={styles.feature}>
                         <Database size={20} />
-                        <span>Add custom exercises, saved locally on this device</span>
+                        <span>
+                            Add custom exercises, saved locally on this device
+                        </span>
                     </div>
                 </div>
 
