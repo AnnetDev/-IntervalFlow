@@ -7,29 +7,40 @@ const ExerciseCard = ({ exercise, onViewDetails, onAddToMine, onDelete }) => {
 
   return (
     <div className={styles.exerciseCard}>
+      <span className={`${styles.rail} ${styles[`${exercise.difficulty}Rail`]}`}></span>
 
-      <div className={styles.exerciseInfo}>
-        <div className={`${styles.cardHeader} ${styles[`${exercise.difficulty}Header`]}`}>
-          <h3 className={`${styles.exerciseName} ${styles[`${exercise.difficulty}Name`]}`}> {exercise.name}</h3>
-        </div>
-        <div className={styles.exerciseParams}>
-          <div className={`${styles.difficultyBadge} ${styles[exercise.difficulty]}`}><ChartNoAxesColumnIncreasing size={11} />{exercise.difficulty}</div>
-          <div className={styles.exerciseParam}><BicepsFlexed size={12} />{exercise.muscleGroup}</div>
-          {exercise.equipment && exercise.equipment !== 'none' && <div className={styles.exerciseParam}><ListChecks size={12} />{exercise.equipment}</div>}
-        </div>
+      <h3 className={styles.exerciseName}>{exercise.name}</h3>
+
+      <div className={styles.metaRow}>
+        <span className={`${styles.chip} ${styles.difficultyBadge} ${styles[exercise.difficulty]}`}>
+          <ChartNoAxesColumnIncreasing size={13} />{exercise.difficulty}
+        </span>
+        <span className={`${styles.chip} ${styles.meta}`}>
+          <BicepsFlexed size={13} />{exercise.muscleGroup}
+        </span>
+        {exercise.equipment && exercise.equipment !== 'none' && (
+          <span className={`${styles.chip} ${styles.meta}`}>
+            <ListChecks size={13} />{exercise.equipment}
+          </span>
+        )}
       </div>
 
       <div className={styles.cardBtns}>
         <Button onClick={() => onViewDetails(exercise)}>
-          <Eye size={16} />Details</Button>
-        {isGlobal ? <Button onClick={onAddToMine} variant="add">
-          <Plus size={16} />Add
-        </Button> : <Button onClick={onDelete} variant="delete">
-          <Trash2 size={16} />Delete
-        </Button>}
+          <Eye size={16} />Details
+        </Button>
+        {isGlobal ? (
+          <Button onClick={onAddToMine} variant="add">
+            <Plus size={16} />Add
+          </Button>
+        ) : (
+          <Button onClick={onDelete} variant="delete">
+            <Trash2 size={16} />Delete
+          </Button>
+        )}
       </div>
     </div>
   );
-}
+};
 
 export default ExerciseCard;
